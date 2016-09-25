@@ -12,9 +12,4 @@ public class MainPresenter implements MainContract.Presenter {
         mMainView = checkNotNull(mainView);
         mMainView.setPresenter(this);
     }
-
-    @Override
-    public void start() {
-
-    }
 }
