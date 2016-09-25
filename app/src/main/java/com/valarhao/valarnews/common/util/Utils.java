@@ -118,10 +118,10 @@ public class Utils {
     }
 
     /**
-     * 沉浸状态栏 (android 5.0 以上)
+     * 半透明状态栏 (android 5.0 以上)
      * @param activity
      */
-    public static void hideStatusBar(Activity activity) {
+    public static void translucentStatusBar(Activity activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             WindowManager.LayoutParams localLayoutParams = activity.getWindow().getAttributes();
             localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);

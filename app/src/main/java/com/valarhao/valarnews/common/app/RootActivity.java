@@ -18,7 +18,7 @@ public class RootActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.root_activity);
 
-        Utils.hideStatusBar(this);
+        Utils.translucentStatusBar(this);
 
         new Handler().postDelayed(new Runnable() {
             @Override
