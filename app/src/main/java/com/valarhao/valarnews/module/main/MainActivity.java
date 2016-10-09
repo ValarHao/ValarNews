@@ -7,7 +7,7 @@ import android.support.v4.view.ViewPager;
 import com.valarhao.valarnews.R;
 import com.valarhao.valarnews.common.base.BaseActivity;
 import com.valarhao.valarnews.common.base.BaseFragment;
-import com.valarhao.valarnews.module.zhihu.column.ColumnFragment;
+import com.valarhao.valarnews.module.zhihu.Section.SectionFragment;
 import com.valarhao.valarnews.module.zhihu.daily.DailyFragment;
 import com.valarhao.valarnews.module.zhihu.hot.HotFragment;
 import com.valarhao.valarnews.module.zhihu.theme.ThemeFragment;
@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         List<BaseFragment> fragments = new ArrayList<>();
         fragments.add(new DailyFragment("日报"));
         fragments.add(new ThemeFragment("主题"));
-        fragments.add(new ColumnFragment("专栏"));
+        fragments.add(new SectionFragment("专栏"));
         fragments.add(new HotFragment("热门"));
         mTabAdapter = new TabAdapter(getSupportFragmentManager(), fragments);
         mViewPager.setAdapter(mTabAdapter);
