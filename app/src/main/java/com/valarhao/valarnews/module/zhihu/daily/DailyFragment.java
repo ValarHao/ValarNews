@@ -14,8 +14,7 @@ import android.view.ViewGroup;
 import com.valarhao.valarnews.R;
 import com.valarhao.valarnews.common.base.BaseFragment;
 import com.valarhao.valarnews.common.util.Utils;
-import com.valarhao.valarnews.module.main.RecyclerItem;
-import com.valarhao.valarnews.module.main.RecyclerListAdapter;
+import com.valarhao.valarnews.module.zhihu.RecyclerItem;
 
 import java.util.List;
 
@@ -24,11 +23,9 @@ import static com.valarhao.valarnews.common.util.Utils.checkNotNull;
 @SuppressLint("ValidFragment")
 public class DailyFragment extends BaseFragment implements DailyContract.View {
 
-    private static final String TAG = DailyFragment.class.getSimpleName();
-
     private DailyContract.Presenter mPresenter;
     private RecyclerView mRecyclerView;
-    private RecyclerListAdapter mRecyclerListAdapter;
+    private RecyclerAdapter mRecyclerAdapter;
     private SwipeRefreshLayout mSwipeRefresh;
 
     public DailyFragment(String title) {
@@ -42,7 +39,7 @@ public class DailyFragment extends BaseFragment implements DailyContract.View {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.view_fragment, container, false);
+        return inflater.inflate(R.layout.zhihu_daily_fragment, container, false);
     }
 
     @Override
@@ -50,29 +47,29 @@ public class DailyFragment extends BaseFragment implements DailyContract.View {
         super.onActivityCreated(savedInstanceState);
         new DailyPresenter(this);
 
-        mRecyclerView = (RecyclerView) getView().findViewById(R.id.recyclerView);
+        mRecyclerView = (RecyclerView) getView().findViewById(R.id.dailyRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager recyclerLayoutManager = new LinearLayoutManager(this.getContext());
         recyclerLayoutManager.setOrientation(OrientationHelper.VERTICAL);
         mRecyclerView.setLayoutManager(recyclerLayoutManager);
-        mRecyclerListAdapter = new RecyclerListAdapter(this.getContext());
-        mRecyclerView.setAdapter(mRecyclerListAdapter);
+        mRecyclerAdapter = new RecyclerAdapter(this.getContext());
+        mRecyclerView.setAdapter(mRecyclerAdapter);
 
-        mRecyclerListAdapter.setOnItemClickListener(new RecyclerListAdapter.OnItemClickListener() {
+        mRecyclerAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
 
             }
         });
 
-        mRecyclerListAdapter.setOnBottomListener(new RecyclerListAdapter.OnBottomListener() {
+        mRecyclerAdapter.setOnBottomListener(new RecyclerAdapter.OnBottomListener() {
             @Override
             public void OnBottom() {
                 mPresenter.bottomRefresh();
             }
         });
 
-        mSwipeRefresh = (SwipeRefreshLayout) getView().findViewById(R.id.swipeRefresh);
+        mSwipeRefresh = (SwipeRefreshLayout) getView().findViewById(R.id.dailySwipeRefresh);
         mSwipeRefresh.setColorSchemeResources(R.color.colorPrimary);
         mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -87,14 +84,14 @@ public class DailyFragment extends BaseFragment implements DailyContract.View {
     @Override
     public void showRecyclerView(List<DailyJson.Story> stories) {
         mSwipeRefresh.setRefreshing(false);
-        mRecyclerListAdapter.clear();
+        mRecyclerAdapter.clear();
         for (DailyJson.Story story : stories) {
             RecyclerItem recyclerItem = new RecyclerItem();
             recyclerItem.setImgLink(story.getImages().get(0));
             recyclerItem.setTitle(story.getTitle());
-            mRecyclerListAdapter.addRecyclerItem(recyclerItem);
+            mRecyclerAdapter.addRecyclerItem(recyclerItem);
         }
-        mRecyclerListAdapter.notifyDataSetChanged();
+        mRecyclerAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -104,9 +101,9 @@ public class DailyFragment extends BaseFragment implements DailyContract.View {
             RecyclerItem recyclerItem = new RecyclerItem();
             recyclerItem.setImgLink(story.getImages().get(0));
             recyclerItem.setTitle(story.getTitle());
-            mRecyclerListAdapter.addRecyclerItem(recyclerItem);
+            mRecyclerAdapter.addRecyclerItem(recyclerItem);
         }
-        mRecyclerListAdapter.notifyDataSetChanged();
+        mRecyclerAdapter.notifyDataSetChanged();
     }
 
     @Override

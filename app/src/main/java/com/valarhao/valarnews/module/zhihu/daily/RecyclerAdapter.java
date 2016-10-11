@@ -1,4 +1,4 @@
-package com.valarhao.valarnews.module.main;
+package com.valarhao.valarnews.module.zhihu.daily;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -12,11 +12,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.valarhao.valarnews.R;
+import com.valarhao.valarnews.module.zhihu.RecyclerItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapter.ViewHolder> {
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     private List<RecyclerItem> mRecyclerItems;
     private LayoutInflater mInflater;
@@ -24,7 +25,7 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
     private OnItemClickListener mOnItemClickListener;
     private OnBottomListener mOnBottomListener;
 
-    public RecyclerListAdapter(Context context) {
+    public RecyclerAdapter(Context context) {
         mContext = context;
         mInflater = LayoutInflater.from(mContext);
         mRecyclerItems = new ArrayList<>();
@@ -46,7 +47,7 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.view_recycler_item_list, parent, false);
+        View view = mInflater.inflate(R.layout.zhihu_daily_recycler_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -96,9 +97,9 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
 
         public ViewHolder(View view) {
             super(view);
-            itemCard = (CardView) view.findViewById(R.id.card_item_list);
-            itemImg = (ImageView) view.findViewById(R.id.imgItem);
-            itemTxtTitle = (TextView) view.findViewById(R.id.txtItemTitle);
+            itemCard = (CardView) view.findViewById(R.id.dailyCard);
+            itemImg = (ImageView) view.findViewById(R.id.imgDailyCard);
+            itemTxtTitle = (TextView) view.findViewById(R.id.txtDailyCardTitle);
         }
     }
 

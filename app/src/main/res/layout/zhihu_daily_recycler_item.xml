@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                                     xmlns:app="http://schemas.android.com/apk/res-auto"
-                                    android:id="@+id/card_item_list"
+                                    android:id="@+id/dailyCard"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="8dp"
@@ -16,12 +16,12 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imgItem"
+            android:id="@+id/imgDailyCard"
             android:layout_width="@dimen/list_image_size"
             android:layout_height="@dimen/list_image_size"/>
 
         <TextView
-            android:id="@+id/txtItemTitle"
+            android:id="@+id/txtDailyCardTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

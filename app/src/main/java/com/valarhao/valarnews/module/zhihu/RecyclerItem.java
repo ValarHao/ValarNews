@@ -1,4 +1,4 @@
-package com.valarhao.valarnews.module.main;
+package com.valarhao.valarnews.module.zhihu;
 
 public class RecyclerItem {
 
@@ -19,10 +19,5 @@ public class RecyclerItem {
 
     public String getTitle() {
         return mTitle;
-    }
-
-    @Override
-    public String toString() {
-        return "NewsItem [imgLink=" + mImgLink + ", title=" + mTitle + "]";
     }
 }

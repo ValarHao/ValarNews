@@ -3,7 +3,6 @@ package com.valarhao.valarnews.module.zhihu.daily;
 import android.support.v4.app.FragmentActivity;
 
 import com.valarhao.valarnews.common.util.LogUtil;
-import com.valarhao.valarnews.module.main.RecyclerListAdapter;
 import com.valarhao.valarnews.module.zhihu.ZhihuApi;
 
 import java.text.SimpleDateFormat;
@@ -13,10 +12,8 @@ import java.util.Date;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Observable;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 import static com.valarhao.valarnews.common.util.Utils.checkNotNull;
@@ -56,16 +53,16 @@ public class DailyPresenter implements DailyContract.Presenter {
     }
 
     @Override
-    public void clickItem(FragmentActivity activity, RecyclerListAdapter adapter, int position) {
+    public void clickItem(FragmentActivity activity) {
 
     }
 
     @Override
     public void bottomRefresh() {
         Date beforeDate = mCalendar.getTime();
-        SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd");
+        SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd"); //日期格式转换
         getDailyBefore(sf.format(beforeDate));
-        mCalendar.add(Calendar.DAY_OF_MONTH, -1);
+        mCalendar.add(Calendar.DAY_OF_MONTH, -1); //加载过后将日期往前推一天
     }
 
     /**

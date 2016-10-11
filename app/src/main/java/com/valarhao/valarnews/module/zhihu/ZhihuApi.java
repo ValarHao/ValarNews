@@ -1,6 +1,8 @@
 package com.valarhao.valarnews.module.zhihu;
 
 import com.valarhao.valarnews.module.zhihu.daily.DailyJson;
+import com.valarhao.valarnews.module.zhihu.daily.detail.DetailInfoJson;
+import com.valarhao.valarnews.module.zhihu.theme.ThemeJson;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -21,4 +23,16 @@ public interface ZhihuApi {
      */
     @GET("news/before/{date}")
     Observable<DailyJson> getDailyBefore(@Path("date") String date);
+
+    /**
+     * 日报详情
+     */
+    @GET("news/{id}")
+    Observable<DetailInfoJson> getDetailInfo(@Path("id") int id);
+
+    /**
+     * 主题日报
+     */
+    @GET("themes")
+    Observable<ThemeJson> getTheme();
 }
