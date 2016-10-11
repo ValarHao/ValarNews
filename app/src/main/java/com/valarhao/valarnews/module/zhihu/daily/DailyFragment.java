@@ -13,7 +13,11 @@ import android.view.ViewGroup;
 
 import com.valarhao.valarnews.R;
 import com.valarhao.valarnews.common.base.BaseFragment;
+import com.valarhao.valarnews.common.util.Utils;
+import com.valarhao.valarnews.module.main.RecyclerItem;
 import com.valarhao.valarnews.module.main.RecyclerListAdapter;
+
+import java.util.List;
 
 import static com.valarhao.valarnews.common.util.Utils.checkNotNull;
 
@@ -23,6 +27,7 @@ public class DailyFragment extends BaseFragment implements DailyContract.View {
     private static final String TAG = DailyFragment.class.getSimpleName();
 
     private DailyContract.Presenter mPresenter;
+    private RecyclerView mRecyclerView;
     private RecyclerListAdapter mRecyclerListAdapter;
     private SwipeRefreshLayout mSwipeRefresh;
 
@@ -45,13 +50,27 @@ public class DailyFragment extends BaseFragment implements DailyContract.View {
         super.onActivityCreated(savedInstanceState);
         new DailyPresenter(this);
 
-        RecyclerView recyclerView = (RecyclerView) getView().findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
+        mRecyclerView = (RecyclerView) getView().findViewById(R.id.recyclerView);
+        mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager recyclerLayoutManager = new LinearLayoutManager(this.getContext());
         recyclerLayoutManager.setOrientation(OrientationHelper.VERTICAL);
-        recyclerView.setLayoutManager(recyclerLayoutManager);
+        mRecyclerView.setLayoutManager(recyclerLayoutManager);
         mRecyclerListAdapter = new RecyclerListAdapter(this.getContext());
-        recyclerView.setAdapter(mRecyclerListAdapter);
+        mRecyclerView.setAdapter(mRecyclerListAdapter);
+
+        mRecyclerListAdapter.setOnItemClickListener(new RecyclerListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+
+            }
+        });
+
+        mRecyclerListAdapter.setOnBottomListener(new RecyclerListAdapter.OnBottomListener() {
+            @Override
+            public void OnBottom() {
+                mPresenter.bottomRefresh();
+            }
+        });
 
         mSwipeRefresh = (SwipeRefreshLayout) getView().findViewById(R.id.swipeRefresh);
         mSwipeRefresh.setColorSchemeResources(R.color.colorPrimary);
@@ -63,5 +82,36 @@ public class DailyFragment extends BaseFragment implements DailyContract.View {
         });
 
         mPresenter.init();
+    }
+
+    @Override
+    public void showRecyclerView(List<DailyJson.Story> stories) {
+        mSwipeRefresh.setRefreshing(false);
+        mRecyclerListAdapter.clear();
+        for (DailyJson.Story story : stories) {
+            RecyclerItem recyclerItem = new RecyclerItem();
+            recyclerItem.setImgLink(story.getImages().get(0));
+            recyclerItem.setTitle(story.getTitle());
+            mRecyclerListAdapter.addRecyclerItem(recyclerItem);
+        }
+        mRecyclerListAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showAddRecyclerView(List<DailyJson.Story> stories) {
+        mSwipeRefresh.setRefreshing(false);
+        for (DailyJson.Story story : stories) {
+            RecyclerItem recyclerItem = new RecyclerItem();
+            recyclerItem.setImgLink(story.getImages().get(0));
+            recyclerItem.setTitle(story.getTitle());
+            mRecyclerListAdapter.addRecyclerItem(recyclerItem);
+        }
+        mRecyclerListAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showError(String msg) {
+        mSwipeRefresh.setRefreshing(false);
+        Utils.showSnackbar(mRecyclerView, msg);
     }
 }

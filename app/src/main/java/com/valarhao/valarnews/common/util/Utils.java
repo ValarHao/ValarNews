@@ -7,7 +7,9 @@ import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.support.design.widget.Snackbar;
 import android.util.TypedValue;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -67,6 +69,15 @@ public class Utils {
      */
     public static void showToast(Context context, CharSequence msg) {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * 短时间显示Snackbar
+     * @param view
+     * @param msg
+     */
+    public static void showSnackbar(View view, String msg) {
+        Snackbar.make(view, msg, Snackbar.LENGTH_SHORT).show();
     }
 
     /**

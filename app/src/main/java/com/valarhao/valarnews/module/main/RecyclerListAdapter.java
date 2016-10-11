@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.valarhao.valarnews.R;
 
 import java.util.ArrayList;
@@ -16,26 +18,30 @@ import java.util.List;
 
 public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapter.ViewHolder> {
 
-    private List<NewsItem> mNewsItems;
+    private List<RecyclerItem> mRecyclerItems;
     private LayoutInflater mInflater;
+    private Context mContext;
+    private OnItemClickListener mOnItemClickListener;
+    private OnBottomListener mOnBottomListener;
 
     public RecyclerListAdapter(Context context) {
-        mInflater = LayoutInflater.from(context);
-        mNewsItems = new ArrayList<>();
+        mContext = context;
+        mInflater = LayoutInflater.from(mContext);
+        mRecyclerItems = new ArrayList<>();
     }
 
-    public void addNewsItem(NewsItem newsItem) {
-        if (!mNewsItems.contains(newsItem)) {
-            mNewsItems.add(newsItem);
+    public void addRecyclerItem(RecyclerItem recyclerItem) {
+        if (!mRecyclerItems.contains(recyclerItem)) {
+            mRecyclerItems.add(recyclerItem);
         }
     }
 
-    public NewsItem getNewsItem(int position) {
-        return mNewsItems.get(position);
+    public RecyclerItem getRecyclerItem(int position) {
+        return mRecyclerItems.get(position);
     }
 
     public void clear() {
-        mNewsItems.clear();
+        mRecyclerItems.clear();
     }
 
     @Override
@@ -45,27 +51,70 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        NewsItem newsItem = mNewsItems.get(position);
-        holder.itemTxt.setText(newsItem.getTitle());
+    public void onBindViewHolder(final ViewHolder holder, int position) {
+        RecyclerItem recyclerItem = mRecyclerItems.get(position);
+        holder.itemTxtTitle.setText(recyclerItem.getTitle());
+        //加载图片
+        if (recyclerItem.getImgLink() != null) {
+            Glide.with(mContext)
+                    .load(recyclerItem.getImgLink())
+                    .crossFade()
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                    .into(holder.itemImg);
+        } else {
+            holder.itemImg.setVisibility(View.GONE);
+        }
+        //点击item监听
+        if (mOnItemClickListener != null) {
+            holder.itemCard.setBackgroundResource(R.drawable.ripple); //点击水波纹效果
+            holder.itemCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = holder.getLayoutPosition();
+                    mOnItemClickListener.onItemClick(holder.itemCard, position);
+                }
+            });
+        }
+        //下拉到底部监听
+        if (mOnBottomListener != null) {
+            if (position == getItemCount() - 1) {
+                mOnBottomListener.OnBottom();
+            }
+        }
     }
 
     @Override
     public int getItemCount() {
-        return mNewsItems.size();
+        return mRecyclerItems.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public CardView itemCard;
         public ImageView itemImg;
-        public TextView itemTxt;
+        public TextView itemTxtTitle;
 
         public ViewHolder(View view) {
             super(view);
             itemCard = (CardView) view.findViewById(R.id.card_item_list);
-            itemImg = (ImageView) view.findViewById(R.id.img_item_list);
-            itemTxt = (TextView) view.findViewById(R.id.txt_item_list);
+            itemImg = (ImageView) view.findViewById(R.id.imgItem);
+            itemTxtTitle = (TextView) view.findViewById(R.id.txtItemTitle);
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+
+    public interface OnBottomListener {
+        void OnBottom();
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        mOnItemClickListener = onItemClickListener;
+    }
+
+    public void setOnBottomListener(OnBottomListener onBottomListener) {
+        mOnBottomListener = onBottomListener;
     }
 }

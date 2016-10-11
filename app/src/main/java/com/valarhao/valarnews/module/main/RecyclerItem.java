@@ -1,6 +1,6 @@
 package com.valarhao.valarnews.module.main;
 
-public class NewsItem {
+public class RecyclerItem {
 
     private String mImgLink;
     private String mTitle;
