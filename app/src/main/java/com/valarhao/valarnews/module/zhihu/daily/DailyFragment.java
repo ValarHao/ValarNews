@@ -39,7 +39,7 @@ public class DailyFragment extends BaseFragment implements DailyContract.View {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.zhihu_common_fragment, container, false);
+        return inflater.inflate(R.layout.zhihu_fragment_common, container, false);
     }
 
     @Override
@@ -82,25 +82,25 @@ public class DailyFragment extends BaseFragment implements DailyContract.View {
     }
 
     @Override
-    public void showRecyclerView(List<DailyJson.Story> stories) {
+    public void showRecyclerView(List<DailyJson.Daily> dailies) {
         mSwipeRefresh.setRefreshing(false);
         mRecyclerAdapter.clear();
-        for (DailyJson.Story story : stories) {
+        for (DailyJson.Daily daily : dailies) {
             RecyclerItem recyclerItem = new RecyclerItem();
-            recyclerItem.setImgLink(story.getImages().get(0));
-            recyclerItem.setTitle(story.getTitle());
+            recyclerItem.setImgLink(daily.getImages().get(0));
+            recyclerItem.setTitle(daily.getTitle());
             mRecyclerAdapter.addRecyclerItem(recyclerItem);
         }
         mRecyclerAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void showAddRecyclerView(List<DailyJson.Story> stories) {
+    public void showAddRecyclerView(List<DailyJson.Daily> dailies) {
         mSwipeRefresh.setRefreshing(false);
-        for (DailyJson.Story story : stories) {
+        for (DailyJson.Daily daily : dailies) {
             RecyclerItem recyclerItem = new RecyclerItem();
-            recyclerItem.setImgLink(story.getImages().get(0));
-            recyclerItem.setTitle(story.getTitle());
+            recyclerItem.setImgLink(daily.getImages().get(0));
+            recyclerItem.setTitle(daily.getTitle());
             mRecyclerAdapter.addRecyclerItem(recyclerItem);
         }
         mRecyclerAdapter.notifyDataSetChanged();

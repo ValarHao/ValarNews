@@ -11,5 +11,6 @@ public class MainPresenter implements MainContract.Presenter {
     public MainPresenter(MainContract.View mainView) {
         mMainView = checkNotNull(mainView);
         mMainView.setPresenter(this);
+        RetrofitHelper.init(); //初始化所有Retrofit
     }
 }

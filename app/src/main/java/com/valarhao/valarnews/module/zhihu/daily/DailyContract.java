@@ -10,8 +10,8 @@ import java.util.List;
 public interface DailyContract {
 
     interface View extends BaseView<Presenter> {
-        void showRecyclerView(List<DailyJson.Story> stories);
-        void showAddRecyclerView(List<DailyJson.Story> stories);
+        void showRecyclerView(List<DailyJson.Daily> dailies);
+        void showAddRecyclerView(List<DailyJson.Daily> dailies);
         void showError(String msg);
     }
 

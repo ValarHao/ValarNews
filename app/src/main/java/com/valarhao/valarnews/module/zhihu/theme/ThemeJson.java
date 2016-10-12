@@ -12,7 +12,7 @@ public class ThemeJson {
 
     private int limit;
     private List<?> subscribed;
-    private List<Other> others;
+    private List<Theme> others;
 
     public int getLimit() {
         return limit;
@@ -22,7 +22,7 @@ public class ThemeJson {
         return subscribed;
     }
 
-    public List<Other> getOthers() {
+    public List<Theme> getThemes() {
         return others;
     }
 
@@ -34,7 +34,7 @@ public class ThemeJson {
      * "name":"日常心理学"}
      */
 
-    public static class Other {
+    public static class Theme {
 
         private int color;
         private String thumbnail;

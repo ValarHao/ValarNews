@@ -38,7 +38,7 @@ public class SectionFragment extends BaseFragment implements SectionContract.Vie
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.zhihu_common_fragment, container, false);
+        return inflater.inflate(R.layout.zhihu_fragment_common, container, false);
     }
 
     @Override

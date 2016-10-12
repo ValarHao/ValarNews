@@ -10,7 +10,7 @@ public class SectionJson {
 
     private List<Section> data;
 
-    public List<Section> getDatas() {
+    public List<Section> getSections() {
         return data;
     }
 
@@ -20,6 +20,7 @@ public class SectionJson {
      * "name":"深夜惊奇"
      * "thumbnail":"http:\/\/pic3.zhimg.com\/91125c9aebcab1c84f58ce4f8779551e.jpg"
      */
+
     public static class Section {
 
         private String description;

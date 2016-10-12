@@ -38,7 +38,7 @@ public class ThemeFragment extends BaseFragment implements ThemeContract.View {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.zhihu_common_fragment, container, false);
+        return inflater.inflate(R.layout.zhihu_fragment_common, container, false);
     }
 
     @Override
@@ -72,13 +72,13 @@ public class ThemeFragment extends BaseFragment implements ThemeContract.View {
     }
 
     @Override
-    public void showRecyclerView(List<ThemeJson.Other> others) {
+    public void showRecyclerView(List<ThemeJson.Theme> themes) {
         mSwipeRefresh.setRefreshing(false);
         mRecyclerAdapter.clear();
-        for (ThemeJson.Other other : others) {
+        for (ThemeJson.Theme theme : themes) {
             RecyclerItem recyclerItem = new RecyclerItem();
-            recyclerItem.setImgLink(other.getThumbnail());
-            recyclerItem.setTitle(other.getName());
+            recyclerItem.setImgLink(theme.getThumbnail());
+            recyclerItem.setTitle(theme.getName());
             mRecyclerAdapter.addRecyclerItem(recyclerItem);
         }
         mRecyclerAdapter.notifyDataSetChanged();

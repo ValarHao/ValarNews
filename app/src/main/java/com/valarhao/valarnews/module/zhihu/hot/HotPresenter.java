@@ -1,4 +1,4 @@
-package com.valarhao.valarnews.module.zhihu.section;
+package com.valarhao.valarnews.module.zhihu.hot;
 
 import android.support.v4.app.FragmentActivity;
 
@@ -11,26 +11,26 @@ import rx.schedulers.Schedulers;
 
 import static com.valarhao.valarnews.common.util.Utils.checkNotNull;
 
-public class SectionPresenter implements SectionContract.Presenter {
+public class HotPresenter implements HotContract.Presenter {
 
-    private static final String TAG = SectionPresenter.class.getSimpleName();
+    private static final String TAG = HotPresenter.class.getSimpleName();
 
-    private final SectionContract.View mSectionView;
+    private final HotContract.View mHotView;
 
-    public SectionPresenter(SectionContract.View sectionView) {
-        mSectionView = checkNotNull(sectionView);
-        mSectionView.setPresenter(this);
+    public HotPresenter(HotContract.View hotView) {
+        mHotView = checkNotNull(hotView);
+        mHotView.setPresenter(this);
     }
 
     @Override
     public void init() {
-        LogUtil.d(TAG, "SectionPresenter init!");
-        getSection();
+        LogUtil.d(TAG, "HotPresenter init!");
+        getHot();
     }
 
     @Override
     public void swipeRefresh() {
-        getSection();
+        getHot();
     }
 
     @Override
@@ -39,14 +39,14 @@ public class SectionPresenter implements SectionContract.Presenter {
     }
 
     /**
-     * 加载专栏日报
+     * 加载热门日报
      */
-    private void getSection() {
+    private void getHot() {
 
-        RetrofitHelper.sZhihuApi.getSection()
+        RetrofitHelper.sZhihuApi.getHot()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<SectionJson>() {
+                .subscribe(new Observer<HotJson>() {
                     @Override
                     public void onCompleted() {
 
@@ -54,12 +54,12 @@ public class SectionPresenter implements SectionContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mSectionView.showError("加载专栏日报失败！！！");
+                        mHotView.showError("加载热门日报失败！！！");
                     }
 
                     @Override
-                    public void onNext(SectionJson sectionJson) {
-                        mSectionView.showRecyclerView(sectionJson.getSections());
+                    public void onNext(HotJson hotJson) {
+                        mHotView.showRecyclerView(hotJson.getHots());
                     }
                 });
     }

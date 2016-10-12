@@ -3,15 +3,12 @@ package com.valarhao.valarnews.module.zhihu.daily;
 import android.support.v4.app.FragmentActivity;
 
 import com.valarhao.valarnews.common.util.LogUtil;
-import com.valarhao.valarnews.module.zhihu.ZhihuApi;
+import com.valarhao.valarnews.module.main.RetrofitHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -23,11 +20,10 @@ public class DailyPresenter implements DailyContract.Presenter {
     private static final String TAG = DailyPresenter.class.getSimpleName();
 
     private final DailyContract.View mDailyView;
-    private ZhihuApi mZhihuApi;
     private Calendar mCalendar;
 
-    public DailyPresenter(DailyContract.View mainView) {
-        mDailyView = checkNotNull(mainView);
+    public DailyPresenter(DailyContract.View dailyView) {
+        mDailyView = checkNotNull(dailyView);
         mDailyView.setPresenter(this);
         mCalendar = Calendar.getInstance();
         mCalendar.setTime(new Date()); //设置为当前日期
@@ -36,13 +32,6 @@ public class DailyPresenter implements DailyContract.Presenter {
     @Override
     public void init() {
         LogUtil.d(TAG, "DailyPresenter init!");
-        //初始化Retrofit的API接口
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ZhihuApi.URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build();
-        mZhihuApi = retrofit.create(ZhihuApi.class);
         getDailyLatest();
     }
 
@@ -70,7 +59,7 @@ public class DailyPresenter implements DailyContract.Presenter {
      */
     private void getDailyLatest() {
 
-        mZhihuApi.getDailyLatest()
+        RetrofitHelper.sZhihuApi.getDailyLatest()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DailyJson>() {
@@ -86,7 +75,7 @@ public class DailyPresenter implements DailyContract.Presenter {
 
                     @Override
                     public void onNext(DailyJson dailyJson) {
-                        mDailyView.showRecyclerView(dailyJson.getStories());
+                        mDailyView.showRecyclerView(dailyJson.getDailies());
                     }
                 });
     }
@@ -97,7 +86,7 @@ public class DailyPresenter implements DailyContract.Presenter {
      */
     private void getDailyBefore(String date) {
 
-        mZhihuApi.getDailyBefore(date)
+        RetrofitHelper.sZhihuApi.getDailyBefore(date)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<DailyJson>() {
@@ -113,8 +102,7 @@ public class DailyPresenter implements DailyContract.Presenter {
 
                     @Override
                     public void onNext(DailyJson dailyJson) {
-                        LogUtil.d(TAG, "Daily before date: " + dailyJson.getDate());
-                        mDailyView.showAddRecyclerView(dailyJson.getStories());
+                        mDailyView.showAddRecyclerView(dailyJson.getDailies());
                     }
                 });
     }

@@ -1,4 +1,4 @@
-package com.valarhao.valarnews.module.zhihu.theme;
+package com.valarhao.valarnews.module.zhihu.hot;
 
 import android.support.v4.app.FragmentActivity;
 
@@ -7,10 +7,10 @@ import com.valarhao.valarnews.common.base.BaseView;
 
 import java.util.List;
 
-public interface ThemeContract {
+public interface HotContract {
 
     interface View extends BaseView<Presenter> {
-        void showRecyclerView(List<ThemeJson.Theme> themes);
+        void showRecyclerView(List<HotJson.Hot> hots);
         void showError(String msg);
     }
 

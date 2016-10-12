@@ -3,11 +3,8 @@ package com.valarhao.valarnews.module.zhihu.theme;
 import android.support.v4.app.FragmentActivity;
 
 import com.valarhao.valarnews.common.util.LogUtil;
-import com.valarhao.valarnews.module.zhihu.ZhihuApi;
+import com.valarhao.valarnews.module.main.RetrofitHelper;
 
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -19,7 +16,6 @@ public class ThemePresenter implements ThemeContract.Presenter {
     private static final String TAG = ThemePresenter.class.getSimpleName();
 
     private final ThemeContract.View mThemeView;
-    private ZhihuApi mZhihuApi;
 
     public ThemePresenter(ThemeContract.View themeView) {
         mThemeView = checkNotNull(themeView);
@@ -29,13 +25,6 @@ public class ThemePresenter implements ThemeContract.Presenter {
     @Override
     public void init() {
         LogUtil.d(TAG, "ThemePresenter init!");
-        //初始化Retrofit的API接口
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ZhihuApi.URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build();
-        mZhihuApi = retrofit.create(ZhihuApi.class);
         getTheme();
     }
 
@@ -54,7 +43,7 @@ public class ThemePresenter implements ThemeContract.Presenter {
      */
     private void getTheme() {
 
-        mZhihuApi.getTheme()
+        RetrofitHelper.sZhihuApi.getTheme()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ThemeJson>() {
@@ -70,7 +59,7 @@ public class ThemePresenter implements ThemeContract.Presenter {
 
                     @Override
                     public void onNext(ThemeJson themeJson) {
-                        mThemeView.showRecyclerView(themeJson.getOthers());
+                        mThemeView.showRecyclerView(themeJson.getThemes());
                     }
                 });
     }

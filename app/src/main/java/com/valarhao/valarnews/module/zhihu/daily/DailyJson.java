@@ -10,17 +10,17 @@ public class DailyJson {
      */
 
     private String date;
-    private List<Story> stories;
+    private List<Daily> stories;
 
     public String getDate() {
         return date;
     }
 
-    public List<Story> getStories() {
+    public List<Daily> getDailies() {
         return stories;
     }
 
-    public static class Story {
+    public static class Daily {
 
         /**
          * "images":["http:\/\/pic2.zhimg.com\/50f7d64cba9305ea756940615fca6935.jpg"]
