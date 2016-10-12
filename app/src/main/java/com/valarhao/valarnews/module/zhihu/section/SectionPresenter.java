@@ -1,4 +1,4 @@
-package com.valarhao.valarnews.module.zhihu.theme;
+package com.valarhao.valarnews.module.zhihu.section;
 
 import android.support.v4.app.FragmentActivity;
 
@@ -14,21 +14,21 @@ import rx.schedulers.Schedulers;
 
 import static com.valarhao.valarnews.common.util.Utils.checkNotNull;
 
-public class ThemePresenter implements ThemeContract.Presenter {
+public class SectionPresenter implements SectionContract.Presenter {
 
-    private static final String TAG = ThemePresenter.class.getSimpleName();
+    private static final String TAG = SectionPresenter.class.getSimpleName();
 
-    private final ThemeContract.View mThemeView;
+    private final SectionContract.View mSectionView;
     private ZhihuApi mZhihuApi;
 
-    public ThemePresenter(ThemeContract.View themeView) {
-        mThemeView = checkNotNull(themeView);
-        mThemeView.setPresenter(this);
+    public SectionPresenter(SectionContract.View sectionView) {
+        mSectionView = checkNotNull(sectionView);
+        mSectionView.setPresenter(this);
     }
 
     @Override
     public void init() {
-        LogUtil.d(TAG, "ThemePresenter init!");
+        LogUtil.d(TAG, "SectionPresenter init!");
         //初始化Retrofit的API接口
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ZhihuApi.URL)
@@ -36,12 +36,12 @@ public class ThemePresenter implements ThemeContract.Presenter {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
         mZhihuApi = retrofit.create(ZhihuApi.class);
-        getTheme();
+        getSection();
     }
 
     @Override
     public void swipeRefresh() {
-        getTheme();
+        getSection();
     }
 
     @Override
@@ -50,14 +50,14 @@ public class ThemePresenter implements ThemeContract.Presenter {
     }
 
     /**
-     * 加载主题日报
+     * 加载专栏日报
      */
-    private void getTheme() {
+    private void getSection() {
 
-        mZhihuApi.getTheme()
+        mZhihuApi.getSection()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ThemeJson>() {
+                .subscribe(new Observer<SectionJson>() {
                     @Override
                     public void onCompleted() {
 
@@ -65,12 +65,12 @@ public class ThemePresenter implements ThemeContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mThemeView.showError("加载主题日报失败！！！");
+                        mSectionView.showError("加载专栏日报失败！！！");
                     }
 
                     @Override
-                    public void onNext(ThemeJson themeJson) {
-                        mThemeView.showRecyclerView(themeJson.getOthers());
+                    public void onNext(SectionJson sectionJson) {
+                        mSectionView.showRecyclerView(sectionJson.getDatas());
                     }
                 });
     }

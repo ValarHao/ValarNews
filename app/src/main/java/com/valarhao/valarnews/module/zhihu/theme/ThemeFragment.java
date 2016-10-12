@@ -38,7 +38,7 @@ public class ThemeFragment extends BaseFragment implements ThemeContract.View {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.zhihu_theme_fragment, container, false);
+        return inflater.inflate(R.layout.zhihu_common_fragment, container, false);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class ThemeFragment extends BaseFragment implements ThemeContract.View {
         super.onActivityCreated(savedInstanceState);
         new ThemePresenter(this);
 
-        mRecyclerView = (RecyclerView) getView().findViewById(R.id.themeRecyclerView);
+        mRecyclerView = (RecyclerView) getView().findViewById(R.id.zhihuRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
         mRecyclerAdapter = new RecyclerAdapter(this.getContext());
@@ -59,7 +59,7 @@ public class ThemeFragment extends BaseFragment implements ThemeContract.View {
             }
         });
 
-        mSwipeRefresh = (SwipeRefreshLayout) getView().findViewById(R.id.themeSwipeRefresh);
+        mSwipeRefresh = (SwipeRefreshLayout) getView().findViewById(R.id.zhihuSwipeRefresh);
         mSwipeRefresh.setColorSchemeResources(R.color.colorPrimary);
         mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

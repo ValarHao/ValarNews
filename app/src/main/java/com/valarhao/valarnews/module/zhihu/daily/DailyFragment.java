@@ -39,7 +39,7 @@ public class DailyFragment extends BaseFragment implements DailyContract.View {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.zhihu_daily_fragment, container, false);
+        return inflater.inflate(R.layout.zhihu_common_fragment, container, false);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class DailyFragment extends BaseFragment implements DailyContract.View {
         super.onActivityCreated(savedInstanceState);
         new DailyPresenter(this);
 
-        mRecyclerView = (RecyclerView) getView().findViewById(R.id.dailyRecyclerView);
+        mRecyclerView = (RecyclerView) getView().findViewById(R.id.zhihuRecyclerView);
         mRecyclerView.setHasFixedSize(true);
         LinearLayoutManager recyclerLayoutManager = new LinearLayoutManager(this.getContext());
         recyclerLayoutManager.setOrientation(OrientationHelper.VERTICAL);
@@ -69,7 +69,7 @@ public class DailyFragment extends BaseFragment implements DailyContract.View {
             }
         });
 
-        mSwipeRefresh = (SwipeRefreshLayout) getView().findViewById(R.id.dailySwipeRefresh);
+        mSwipeRefresh = (SwipeRefreshLayout) getView().findViewById(R.id.zhihuSwipeRefresh);
         mSwipeRefresh.setColorSchemeResources(R.color.colorPrimary);
         mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

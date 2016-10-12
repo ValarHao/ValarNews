@@ -20,7 +20,7 @@ public class BaseFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.zhihu_daily_fragment, container, false);
+        return inflater.inflate(R.layout.zhihu_common_fragment, container, false);
     }
 
     public String getTitle() {

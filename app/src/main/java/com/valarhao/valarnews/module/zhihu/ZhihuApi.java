@@ -2,6 +2,7 @@ package com.valarhao.valarnews.module.zhihu;
 
 import com.valarhao.valarnews.module.zhihu.daily.DailyJson;
 import com.valarhao.valarnews.module.zhihu.daily.detail.DetailInfoJson;
+import com.valarhao.valarnews.module.zhihu.section.SectionJson;
 import com.valarhao.valarnews.module.zhihu.theme.ThemeJson;
 
 import retrofit2.http.GET;
@@ -35,4 +36,10 @@ public interface ZhihuApi {
      */
     @GET("themes")
     Observable<ThemeJson> getTheme();
+
+    /**
+     * 专栏日报
+     */
+    @GET("sections")
+    Observable<SectionJson> getSection();
 }
