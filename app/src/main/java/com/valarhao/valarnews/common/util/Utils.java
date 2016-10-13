@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
@@ -78,6 +79,19 @@ public class Utils {
      */
     public static void showSnackbar(View view, String msg) {
         Snackbar.make(view, msg, Snackbar.LENGTH_SHORT).show();
+    }
+
+    /**
+     * 刷新SwipeRefreshLayout
+     * @param swipeRefresh
+     */
+    public static void showSwipeRefresh(final SwipeRefreshLayout swipeRefresh) {
+        swipeRefresh.post(new Runnable() {
+            @Override
+            public void run() {
+                swipeRefresh.setRefreshing(true);
+            }
+        });
     }
 
     /**

@@ -58,7 +58,7 @@ public class DailyFragment extends BaseFragment implements DailyContract.View {
         mRecyclerAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
+                mPresenter.clickItem(getActivity(), mRecyclerAdapter, position);
             }
         });
 
@@ -77,6 +77,7 @@ public class DailyFragment extends BaseFragment implements DailyContract.View {
                 mPresenter.swipeRefresh();
             }
         });
+        Utils.showSwipeRefresh(mSwipeRefresh);
 
         mPresenter.init();
     }
@@ -89,6 +90,7 @@ public class DailyFragment extends BaseFragment implements DailyContract.View {
             RecyclerItem recyclerItem = new RecyclerItem();
             recyclerItem.setImgLink(daily.getImages().get(0));
             recyclerItem.setTitle(daily.getTitle());
+            recyclerItem.setId(daily.getId());
             mRecyclerAdapter.addRecyclerItem(recyclerItem);
         }
         mRecyclerAdapter.notifyDataSetChanged();

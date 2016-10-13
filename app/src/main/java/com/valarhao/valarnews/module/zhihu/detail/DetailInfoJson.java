@@ -1,4 +1,4 @@
-package com.valarhao.valarnews.module.zhihu.daily.detail;
+package com.valarhao.valarnews.module.zhihu.detail;
 
 import java.util.List;
 

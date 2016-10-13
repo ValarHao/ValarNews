@@ -4,6 +4,7 @@ public class RecyclerItem {
 
     private String mImgLink;
     private String mTitle;
+    private int mId;
 
     public void setImgLink(String imgLink) {
         mImgLink = imgLink;
@@ -19,5 +20,13 @@ public class RecyclerItem {
 
     public String getTitle() {
         return mTitle;
+    }
+
+    public void setId(int id) {
+        mId = id;
+    }
+
+    public int getId() {
+        return mId;
     }
 }

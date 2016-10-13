@@ -1,7 +1,7 @@
 package com.valarhao.valarnews.module.zhihu;
 
 import com.valarhao.valarnews.module.zhihu.daily.DailyJson;
-import com.valarhao.valarnews.module.zhihu.daily.detail.DetailInfoJson;
+import com.valarhao.valarnews.module.zhihu.detail.DetailInfoJson;
 import com.valarhao.valarnews.module.zhihu.hot.HotJson;
 import com.valarhao.valarnews.module.zhihu.section.SectionJson;
 import com.valarhao.valarnews.module.zhihu.theme.ThemeJson;

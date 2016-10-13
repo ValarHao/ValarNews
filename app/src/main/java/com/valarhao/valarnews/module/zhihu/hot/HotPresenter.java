@@ -54,7 +54,7 @@ public class HotPresenter implements HotContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mHotView.showError("加载热门日报失败！！！");
+                        mHotView.showError("加载失败，请检查网络连接！");
                     }
 
                     @Override

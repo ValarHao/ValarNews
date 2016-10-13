@@ -1,9 +1,12 @@
 package com.valarhao.valarnews.module.zhihu.daily;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 
 import com.valarhao.valarnews.common.util.LogUtil;
 import com.valarhao.valarnews.module.main.RetrofitHelper;
+import com.valarhao.valarnews.module.zhihu.RecyclerItem;
+import com.valarhao.valarnews.module.zhihu.detail.DetailActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -42,8 +45,10 @@ public class DailyPresenter implements DailyContract.Presenter {
     }
 
     @Override
-    public void clickItem(FragmentActivity activity) {
-
+    public void clickItem(FragmentActivity activity, RecyclerAdapter adapter, int position) {
+        RecyclerItem recyclerItem = adapter.getRecyclerItem(position);
+        Intent intent = DetailActivity.newIndexIntent(activity, recyclerItem.getId());
+        activity.startActivity(intent);
     }
 
     @Override
@@ -70,7 +75,7 @@ public class DailyPresenter implements DailyContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mDailyView.showError("加载最新日报失败！！！");
+                        mDailyView.showError("加载失败，请检查网络连接！");
                     }
 
                     @Override
@@ -97,7 +102,7 @@ public class DailyPresenter implements DailyContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mDailyView.showError("加载之前日报失败！！！");
+                        mDailyView.showError("加载失败，请检查网络连接！");
                     }
 
                     @Override

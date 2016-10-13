@@ -67,6 +67,7 @@ public class ThemeFragment extends BaseFragment implements ThemeContract.View {
                 mPresenter.swipeRefresh();
             }
         });
+        Utils.showSwipeRefresh(mSwipeRefresh);
 
         mPresenter.init();
     }

@@ -54,7 +54,7 @@ public class SectionPresenter implements SectionContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mSectionView.showError("加载专栏日报失败！！！");
+                        mSectionView.showError("加载失败，请检查网络连接！");
                     }
 
                     @Override

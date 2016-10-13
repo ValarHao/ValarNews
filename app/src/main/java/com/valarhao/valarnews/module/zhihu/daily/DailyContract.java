@@ -18,7 +18,7 @@ public interface DailyContract {
     interface Presenter extends BasePresenter {
         void init();
         void swipeRefresh();
-        void clickItem(FragmentActivity activity);
+        void clickItem(FragmentActivity activity, RecyclerAdapter adapter, int position);
         void bottomRefresh();
     }
 }

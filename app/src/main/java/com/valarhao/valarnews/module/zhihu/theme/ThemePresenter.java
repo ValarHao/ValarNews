@@ -54,7 +54,7 @@ public class ThemePresenter implements ThemeContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mThemeView.showError("加载主题日报失败！！！");
+                        mThemeView.showError("加载失败，请检查网络连接！");
                     }
 
                     @Override

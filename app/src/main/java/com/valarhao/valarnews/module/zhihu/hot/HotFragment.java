@@ -70,6 +70,7 @@ public class HotFragment extends BaseFragment implements HotContract.View {
                 mPresenter.swipeRefresh();
             }
         });
+        Utils.showSwipeRefresh(mSwipeRefresh);
 
         mPresenter.init();
     }

@@ -67,6 +67,7 @@ public class SectionFragment extends BaseFragment implements SectionContract.Vie
                 mPresenter.swipeRefresh();
             }
         });
+        Utils.showSwipeRefresh(mSwipeRefresh);
 
         mPresenter.init();
     }
