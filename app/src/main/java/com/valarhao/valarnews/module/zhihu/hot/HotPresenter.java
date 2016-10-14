@@ -7,6 +7,7 @@ import com.valarhao.valarnews.module.main.RetrofitHelper;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 import static com.valarhao.valarnews.common.util.Utils.checkNotNull;
@@ -46,20 +47,15 @@ public class HotPresenter implements HotContract.Presenter {
         RetrofitHelper.sZhihuApi.getHot()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<HotJson>() {
+                .subscribe(new Action1<HotJson>() {
                     @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        mHotView.showError("加载失败，请检查网络连接！");
-                    }
-
-                    @Override
-                    public void onNext(HotJson hotJson) {
+                    public void call(HotJson hotJson) {
                         mHotView.showRecyclerView(hotJson.getHots());
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        mHotView.showError("加载数据失败，请检查网络连接！");
                     }
                 });
     }

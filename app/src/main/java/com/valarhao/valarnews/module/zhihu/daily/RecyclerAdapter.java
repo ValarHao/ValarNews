@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.valarhao.valarnews.R;
+import com.valarhao.valarnews.common.util.GlideUtil;
 import com.valarhao.valarnews.module.zhihu.RecyclerItem;
 
 import java.util.ArrayList;
@@ -57,11 +58,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.itemTxtTitle.setText(recyclerItem.getTitle());
         //加载图片
         if (recyclerItem.getImgLink() != null) {
-            Glide.with(mContext)
-                    .load(recyclerItem.getImgLink())
-                    .crossFade()
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                    .into(holder.itemImg);
+            GlideUtil.load(mContext, recyclerItem.getImgLink(), holder.itemImg);
         } else {
             holder.itemImg.setVisibility(View.GONE);
         }

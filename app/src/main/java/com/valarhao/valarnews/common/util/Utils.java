@@ -143,17 +143,6 @@ public class Utils {
     }
 
     /**
-     * 半透明状态栏 (android 5.0 以上)
-     * @param activity
-     */
-    public static void translucentStatusBar(Activity activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            WindowManager.LayoutParams localLayoutParams = activity.getWindow().getAttributes();
-            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
-        }
-    }
-
-    /**
      * 给activity设置透明度
      * @param activity
      * @param alpha 0.0-1.0

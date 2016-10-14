@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity android:name=".common.app.RootActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -27,7 +28,8 @@
 
         <activity android:name=".module.zhihu.detail.DetailActivity"
             android:screenOrientation="portrait"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop"
+            android:theme="@style/TranslucentTheme"/>
     </application>
 
 </manifest>

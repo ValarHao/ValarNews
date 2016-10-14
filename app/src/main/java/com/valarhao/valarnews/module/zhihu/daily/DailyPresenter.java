@@ -14,6 +14,7 @@ import java.util.Date;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 import static com.valarhao.valarnews.common.util.Utils.checkNotNull;
@@ -67,20 +68,15 @@ public class DailyPresenter implements DailyContract.Presenter {
         RetrofitHelper.sZhihuApi.getDailyLatest()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<DailyJson>() {
+                .subscribe(new Action1<DailyJson>() {
                     @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        mDailyView.showError("加载失败，请检查网络连接！");
-                    }
-
-                    @Override
-                    public void onNext(DailyJson dailyJson) {
+                    public void call(DailyJson dailyJson) {
                         mDailyView.showRecyclerView(dailyJson.getDailies());
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        mDailyView.showError("加载数据失败，请检查网络连接！");
                     }
                 });
     }

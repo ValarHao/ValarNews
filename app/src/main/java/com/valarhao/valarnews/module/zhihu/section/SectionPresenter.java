@@ -7,6 +7,7 @@ import com.valarhao.valarnews.module.main.RetrofitHelper;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 import static com.valarhao.valarnews.common.util.Utils.checkNotNull;
@@ -46,20 +47,15 @@ public class SectionPresenter implements SectionContract.Presenter {
         RetrofitHelper.sZhihuApi.getSection()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<SectionJson>() {
+                .subscribe(new Action1<SectionJson>() {
                     @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        mSectionView.showError("加载失败，请检查网络连接！");
-                    }
-
-                    @Override
-                    public void onNext(SectionJson sectionJson) {
+                    public void call(SectionJson sectionJson) {
                         mSectionView.showRecyclerView(sectionJson.getSections());
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        mSectionView.showError("加载数据失败，请检查网络连接！");
                     }
                 });
     }

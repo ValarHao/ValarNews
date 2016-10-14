@@ -6,7 +6,6 @@
     <JAVADOC />
     <SOURCES>
       <root url="jar://D:/Cache/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/adapter-rxjava/2.0.2/67fd7617a598a21f0a4298368458c1b67d9a540d/adapter-rxjava-2.0.2-sources.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/adapter-rxjava/2.0.2/67fd7617a598a21f0a4298368458c1b67d9a540d/adapter-rxjava-2.0.2-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
