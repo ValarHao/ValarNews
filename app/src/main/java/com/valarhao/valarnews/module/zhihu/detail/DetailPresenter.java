@@ -24,8 +24,14 @@ public class DetailPresenter implements DetailContract.Presenter {
 
     @Override
     public void init() {
-        LogUtil.d(TAG, "DetailActivity init!");
+        LogUtil.d(TAG, "DetailActivity init!" + mId);
         getDetailInfo(mId);
+        getDetailExtra(mId);
+    }
+
+    @Override
+    public void clickComment() {
+
     }
 
     /**
@@ -41,6 +47,57 @@ public class DetailPresenter implements DetailContract.Presenter {
                     @Override
                     public void call(DetailInfoJson detailInfoJson) {
                         mDetailView.showDetailInfo(detailInfoJson);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        mDetailView.showError("加载数据失败，请检查网络连接！");
+                    }
+                });
+    }
+
+    /**
+     * 加载日报额外信息
+     * @param id
+     */
+    private void getDetailExtra(int id) {
+
+        RetrofitHelper.sZhihuApi.getDetailExtraInfo(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<DetailExtraJson>() {
+                    @Override
+                    public void call(DetailExtraJson detailExtraJson) {
+                        mDetailView.showDetailExtra(detailExtraJson);
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        throwable.printStackTrace();
+                        mDetailView.showError("加载数据失败，请检查网络连接！");
+                    }
+                });
+    }
+
+    /**
+     * 加载日报短评论
+     * @param id
+     */
+    private void getDetailShortComment(int id) {
+
+        RetrofitHelper.sZhihuApi.getDetailShortInfo(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<DetailShortJson>() {
+                    @Override
+                    public void call(DetailShortJson detailShortJson) {
+                        LogUtil.d(TAG, detailShortJson.getComments().get(1).getContent());
+                    }
+                }, new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable throwable) {
+                        LogUtil.d(TAG, "加载数据失败，请检查网络连接！");
+                        //mDetailView.showError();
                     }
                 });
     }

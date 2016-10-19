@@ -8,7 +8,9 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tencent.smtt.sdk.WebSettings;
@@ -17,6 +19,8 @@ import com.tencent.smtt.sdk.WebViewClient;
 import com.valarhao.valarnews.R;
 import com.valarhao.valarnews.common.util.GlideUtil;
 import com.valarhao.valarnews.common.util.HtmlUtil;
+import com.valarhao.valarnews.common.util.LogUtil;
+import com.valarhao.valarnews.common.util.Utils;
 
 import static com.valarhao.valarnews.common.util.Utils.checkNotNull;
 
@@ -31,8 +35,12 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
     private Toolbar mToolbar;
     private NestedScrollView mScroller;
     private WebView mWeb;
+    private LinearLayout mBottom;
+    private TextView mBottomLike;
+    private TextView mBottomComment;
 
     private boolean isImageShow = false;
+    private boolean isBottomShow = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +55,9 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
         mToolbar = (Toolbar) findViewById(R.id.toolbarZhihu);
         mScroller = (NestedScrollView) findViewById(R.id.scrollerZhihu);
         mWeb = (WebView) findViewById(R.id.webZhihu);
+        mBottom = (LinearLayout) findViewById(R.id.llZhihuBottom);
+        mBottomLike = (TextView) findViewById(R.id.txtZhihuBottomLike);
+        mBottomComment = (TextView) findViewById(R.id.txtZhihuBottomComment);
 
         // ToolBar
         setSupportActionBar(mToolbar);
@@ -71,11 +82,23 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
         mScroller.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                if ( scrollY - oldScrollY > 0 ) { //下移
-
-                } else if ( scrollY - oldScrollY < 0 ) { //上移
-
+                if ( scrollY - oldScrollY > 0 && isBottomShow ) { //下移
+                    LogUtil.d("test", "Scroll down!");
+                    isBottomShow = false;
+                    mBottom.animate().translationY(mBottom.getHeight());
+                } else if ( scrollY - oldScrollY < 0 && !isBottomShow ) { //上移
+                    LogUtil.d("test", "Scroll up!");
+                    isBottomShow = true;
+                    mBottom.animate().translationY(0);
                 }
+            }
+        });
+
+        //mBottomComment
+        mBottomComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mPresenter.clickComment();
             }
         });
 
@@ -105,6 +128,17 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
         mTxtBar.setText(detailInfoJson.getImageSource());
         String htmlData = HtmlUtil.createHtmlData(detailInfoJson.getBody(), detailInfoJson.getCss(), detailInfoJson.getJs());
         mWeb.loadData(htmlData, HtmlUtil.MIME_TYPE, HtmlUtil.ENCODING);
+    }
+
+    @Override
+    public void showDetailExtra(DetailExtraJson detailExtraJson) {
+        mBottomLike.setText(detailExtraJson.getPopularity());
+        mBottomComment.setText(detailExtraJson.getShortComments());
+    }
+
+    @Override
+    public void showError(String msg) {
+        Utils.showToast(this, msg);
     }
 
     public static Intent newIndexIntent(Context context, int id) {

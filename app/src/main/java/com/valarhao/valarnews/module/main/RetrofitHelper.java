@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitHelper {
 
-    private static final int TIMEOUT = 5;
+    private static final int TIMEOUT = 10;
 
     private static OkHttpClient sClient;
     public static ZhihuApi sZhihuApi = null;
@@ -28,9 +28,9 @@ public class RetrofitHelper {
     private static void initZhihuApi() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ZhihuApi.URL)
+                .client(sClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .client(sClient)
                 .build();
         sZhihuApi = retrofit.create(ZhihuApi.class);
     }

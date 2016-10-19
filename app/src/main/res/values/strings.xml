@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">ValarNews</string>
-
     <string name="root_author">ValarHao</string>
+    <string name="zero">0</string>
 </resources>

@@ -1,7 +1,9 @@
 package com.valarhao.valarnews.module.zhihu;
 
 import com.valarhao.valarnews.module.zhihu.daily.DailyJson;
+import com.valarhao.valarnews.module.zhihu.detail.DetailExtraJson;
 import com.valarhao.valarnews.module.zhihu.detail.DetailInfoJson;
+import com.valarhao.valarnews.module.zhihu.detail.DetailShortJson;
 import com.valarhao.valarnews.module.zhihu.hot.HotJson;
 import com.valarhao.valarnews.module.zhihu.section.SectionJson;
 import com.valarhao.valarnews.module.zhihu.theme.ThemeJson;
@@ -27,12 +29,6 @@ public interface ZhihuApi {
     Observable<DailyJson> getDailyBefore(@Path("date") String date);
 
     /**
-     * 日报详情
-     */
-    @GET("news/{id}")
-    Observable<DetailInfoJson> getDetailInfo(@Path("id") int id);
-
-    /**
      * 主题日报
      */
     @GET("themes")
@@ -49,4 +45,22 @@ public interface ZhihuApi {
      */
     @GET("news/hot")
     Observable<HotJson> getHot();
+
+    /**
+     * 日报详情
+     */
+    @GET("news/{id}")
+    Observable<DetailInfoJson> getDetailInfo(@Path("id") int id);
+
+    /**
+     * 日报额外信息
+     */
+    @GET("story-extra/{id}")
+    Observable<DetailExtraJson> getDetailExtraInfo(@Path("id") int id);
+
+    /**
+     * 日报短评论
+     */
+    @GET("story/{id}/short-comments")
+    Observable<DetailShortJson> getDetailShortInfo(@Path("id") int id);
 }
