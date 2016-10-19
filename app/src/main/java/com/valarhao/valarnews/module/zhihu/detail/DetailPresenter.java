@@ -1,7 +1,12 @@
 package com.valarhao.valarnews.module.zhihu.detail;
 
+import android.content.Context;
+import android.content.Intent;
+
 import com.valarhao.valarnews.common.util.LogUtil;
 import com.valarhao.valarnews.module.main.RetrofitHelper;
+import com.valarhao.valarnews.module.zhihu.detail.comment.DetailShortJson;
+import com.valarhao.valarnews.module.zhihu.detail.comment.ShortCommentActivity;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -30,8 +35,9 @@ public class DetailPresenter implements DetailContract.Presenter {
     }
 
     @Override
-    public void clickComment() {
-
+    public void clickComment(Context context) {
+        Intent intent = ShortCommentActivity.newIndexIntent(context, mId);
+        context.startActivity(intent);
     }
 
     /**
@@ -75,29 +81,6 @@ public class DetailPresenter implements DetailContract.Presenter {
                     public void call(Throwable throwable) {
                         throwable.printStackTrace();
                         mDetailView.showError("加载数据失败，请检查网络连接！");
-                    }
-                });
-    }
-
-    /**
-     * 加载日报短评论
-     * @param id
-     */
-    private void getDetailShortComment(int id) {
-
-        RetrofitHelper.sZhihuApi.getDetailShortInfo(id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<DetailShortJson>() {
-                    @Override
-                    public void call(DetailShortJson detailShortJson) {
-                        LogUtil.d(TAG, detailShortJson.getComments().get(1).getContent());
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        LogUtil.d(TAG, "加载数据失败，请检查网络连接！");
-                        //mDetailView.showError();
                     }
                 });
     }

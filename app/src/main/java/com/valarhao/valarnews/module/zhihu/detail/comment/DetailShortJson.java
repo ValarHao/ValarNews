@@ -1,4 +1,4 @@
-package com.valarhao.valarnews.module.zhihu.detail;
+package com.valarhao.valarnews.module.zhihu.detail.comment;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class DetailShortJson {
         private String author;
         private String content;
         private String avatar;
-        private int time;
+        private long time;
         private int id;
         private int likes;
 
@@ -44,7 +44,7 @@ public class DetailShortJson {
             return avatar;
         }
 
-        public int getTime() {
+        public long getTime() {
             return time;
         }
 

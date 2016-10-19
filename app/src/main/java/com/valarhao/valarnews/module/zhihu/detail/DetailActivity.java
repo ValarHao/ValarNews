@@ -45,7 +45,7 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.zhihu_detail);
+        setContentView(R.layout.zhihu_detail_activity);
         int id = getIntent().getIntExtra(EXTRA_ID, 0);
         new DetailPresenter(this, id);
 
@@ -98,7 +98,7 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
         mBottomComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mPresenter.clickComment();
+                mPresenter.clickComment(DetailActivity.this);
             }
         });
 
@@ -132,8 +132,8 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
 
     @Override
     public void showDetailExtra(DetailExtraJson detailExtraJson) {
-        mBottomLike.setText(detailExtraJson.getPopularity());
-        mBottomComment.setText(detailExtraJson.getShortComments());
+        mBottomLike.setText(detailExtraJson.getPopularity() + "");
+        mBottomComment.setText(detailExtraJson.getShortComments() + "");
     }
 
     @Override

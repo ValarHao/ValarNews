@@ -16,20 +16,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity android:name=".common.app.RootActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/TranslucentTheme">
+                  android:screenOrientation="portrait"
+                  android:theme="@style/TranslucentTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".module.main.MainActivity"
-            android:screenOrientation="portrait"/>
+                  android:screenOrientation="portrait"/>
 
         <activity android:name=".module.zhihu.detail.DetailActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTop"
-            android:theme="@style/TranslucentTheme"/>
+                  android:screenOrientation="portrait"
+                  android:launchMode="singleTop"
+                  android:theme="@style/TranslucentTheme"/>
+        <activity android:name=".module.zhihu.detail.comment.ShortCommentActivity"
+                  android:screenOrientation="portrait"
+                  android:launchMode="singleTop"/>
     </application>
 
 </manifest>

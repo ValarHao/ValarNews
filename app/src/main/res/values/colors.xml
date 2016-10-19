@@ -12,4 +12,7 @@
     <color name="colorGrey">#9E9E9E</color>
     <color name="colorWhite">#F5F5F5</color>
     <color name="colorToolBarTranslucent">#3B000000</color>
+
+    <color name="colorCommentText">#5D5D5D</color>
+    <color name="colorCommentTime">#BFBFBF</color>
 </resources>
