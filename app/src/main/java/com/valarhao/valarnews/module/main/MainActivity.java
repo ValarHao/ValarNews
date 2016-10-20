@@ -7,10 +7,10 @@ import android.support.v4.view.ViewPager;
 import com.valarhao.valarnews.R;
 import com.valarhao.valarnews.common.base.BaseActivity;
 import com.valarhao.valarnews.common.base.BaseFragment;
-import com.valarhao.valarnews.module.zhihu.section.SectionFragment;
-import com.valarhao.valarnews.module.zhihu.daily.DailyFragment;
-import com.valarhao.valarnews.module.zhihu.hot.HotFragment;
-import com.valarhao.valarnews.module.zhihu.theme.ThemeFragment;
+import com.valarhao.valarnews.module.zhihu.module.section.SectionFragment;
+import com.valarhao.valarnews.module.zhihu.module.daily.DailyFragment;
+import com.valarhao.valarnews.module.zhihu.module.hot.HotFragment;
+import com.valarhao.valarnews.module.zhihu.module.theme.ThemeFragment;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.valarhao.valarnews.module.main;
 
-import com.valarhao.valarnews.module.zhihu.ZhihuApi;
+import com.valarhao.valarnews.module.zhihu.common.ZhihuApi;
 
 import java.util.concurrent.TimeUnit;
 

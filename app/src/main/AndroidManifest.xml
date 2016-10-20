@@ -26,14 +26,14 @@
         <activity android:name=".module.main.MainActivity"
                   android:screenOrientation="portrait"/>
 
-        <activity android:name=".module.zhihu.detail.DetailActivity"
+        <activity android:name=".module.zhihu.common.detail.DetailActivity"
                   android:screenOrientation="portrait"
                   android:launchMode="singleTop"
                   android:theme="@style/TranslucentTheme"/>
-        <activity android:name=".module.zhihu.detail.comment.ShortCommentActivity"
+        <activity android:name=".module.zhihu.common.detail.comment.ShortCommentActivity"
                   android:screenOrientation="portrait"
                   android:launchMode="singleTop"/>
-        <activity android:name=".module.zhihu.theme.child.ThemeChildActivity"
+        <activity android:name=".module.zhihu.module.section.theme.child.ThemeChildActivity"
                   android:screenOrientation="portrait"
                   android:launchMode="singleTop"/>
     </application>
