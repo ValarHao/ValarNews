@@ -1,7 +1,7 @@
 package com.valarhao.valarnews.module.zhihu.daily;
 
+import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
 
 import com.valarhao.valarnews.common.util.LogUtil;
 import com.valarhao.valarnews.module.main.RetrofitHelper;
@@ -46,10 +46,10 @@ public class DailyPresenter implements DailyContract.Presenter {
     }
 
     @Override
-    public void clickItem(FragmentActivity activity, RecyclerAdapter adapter, int position) {
+    public void clickItem(Context context, RecyclerAdapter adapter, int position) {
         RecyclerItem recyclerItem = adapter.getRecyclerItem(position);
-        Intent intent = DetailActivity.newIndexIntent(activity, recyclerItem.getId());
-        activity.startActivity(intent);
+        Intent intent = DetailActivity.newIndexIntent(context, recyclerItem.getId());
+        context.startActivity(intent);
     }
 
     @Override

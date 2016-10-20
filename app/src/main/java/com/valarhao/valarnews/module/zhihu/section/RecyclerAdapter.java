@@ -63,7 +63,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         }
         //点击item监听
         if (mOnItemClickListener != null) {
-            holder.itemCard.setBackgroundResource(R.drawable.ripple); //点击水波纹效果
+            //holder.itemCard.setBackgroundResource(R.drawable.ripple); //点击水波纹效果
             holder.itemCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

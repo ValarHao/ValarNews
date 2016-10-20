@@ -7,6 +7,7 @@ import com.valarhao.valarnews.module.zhihu.detail.comment.DetailShortJson;
 import com.valarhao.valarnews.module.zhihu.hot.HotJson;
 import com.valarhao.valarnews.module.zhihu.section.SectionJson;
 import com.valarhao.valarnews.module.zhihu.theme.ThemeJson;
+import com.valarhao.valarnews.module.zhihu.theme.child.ThemeChildJson;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -33,6 +34,12 @@ public interface ZhihuApi {
      */
     @GET("themes")
     Observable<ThemeJson> getTheme();
+
+    /**
+     * 主题日报详情
+     */
+    @GET("theme/{id}")
+    Observable<ThemeChildJson> getThemeChild(@Path("id") int id);
 
     /**
      * 专栏日报

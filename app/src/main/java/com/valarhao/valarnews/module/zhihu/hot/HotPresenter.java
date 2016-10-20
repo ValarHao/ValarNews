@@ -1,11 +1,13 @@
 package com.valarhao.valarnews.module.zhihu.hot;
 
-import android.support.v4.app.FragmentActivity;
+import android.content.Context;
+import android.content.Intent;
 
 import com.valarhao.valarnews.common.util.LogUtil;
 import com.valarhao.valarnews.module.main.RetrofitHelper;
+import com.valarhao.valarnews.module.zhihu.RecyclerItem;
+import com.valarhao.valarnews.module.zhihu.detail.DetailActivity;
 
-import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
@@ -35,8 +37,10 @@ public class HotPresenter implements HotContract.Presenter {
     }
 
     @Override
-    public void clickItem(FragmentActivity activity) {
-
+    public void clickItem(Context context, RecyclerAdapter adapter, int position) {
+        RecyclerItem recyclerItem = adapter.getRecyclerItem(position);
+        Intent intent = DetailActivity.newIndexIntent(context, recyclerItem.getId());
+        context.startActivity(intent);
     }
 
     /**

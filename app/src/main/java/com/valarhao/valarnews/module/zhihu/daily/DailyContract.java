@@ -1,5 +1,6 @@
 package com.valarhao.valarnews.module.zhihu.daily;
 
+import android.content.Context;
 import android.support.v4.app.FragmentActivity;
 
 import com.valarhao.valarnews.common.base.BasePresenter;
@@ -18,7 +19,7 @@ public interface DailyContract {
     interface Presenter extends BasePresenter {
         void init();
         void swipeRefresh();
-        void clickItem(FragmentActivity activity, RecyclerAdapter adapter, int position);
+        void clickItem(Context context, RecyclerAdapter adapter, int position);
         void bottomRefresh();
     }
 }

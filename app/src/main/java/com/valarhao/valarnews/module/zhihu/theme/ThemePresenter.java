@@ -1,9 +1,13 @@
 package com.valarhao.valarnews.module.zhihu.theme;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 
 import com.valarhao.valarnews.common.util.LogUtil;
 import com.valarhao.valarnews.module.main.RetrofitHelper;
+import com.valarhao.valarnews.module.zhihu.RecyclerItem;
+import com.valarhao.valarnews.module.zhihu.theme.child.ThemeChildActivity;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -35,8 +39,10 @@ public class ThemePresenter implements ThemeContract.Presenter {
     }
 
     @Override
-    public void clickItem(FragmentActivity activity) {
-
+    public void clickItem(Context context, RecyclerAdapter adapter, int position) {
+        RecyclerItem recyclerItem = adapter.getRecyclerItem(position);
+        Intent intent = ThemeChildActivity.newIndexIntent(context, recyclerItem.getId());
+        context.startActivity(intent);
     }
 
     /**

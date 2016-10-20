@@ -55,7 +55,7 @@ public class ThemeFragment extends BaseFragment implements ThemeContract.View {
         mRecyclerAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
+                mPresenter.clickItem(getActivity(), mRecyclerAdapter, position);
             }
         });
 
@@ -80,6 +80,7 @@ public class ThemeFragment extends BaseFragment implements ThemeContract.View {
             RecyclerItem recyclerItem = new RecyclerItem();
             recyclerItem.setImgLink(theme.getThumbnail());
             recyclerItem.setTitle(theme.getName());
+            recyclerItem.setId(theme.getId());
             mRecyclerAdapter.addRecyclerItem(recyclerItem);
         }
         mRecyclerAdapter.notifyDataSetChanged();

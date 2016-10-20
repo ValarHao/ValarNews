@@ -58,7 +58,7 @@ public class HotFragment extends BaseFragment implements HotContract.View {
         mRecyclerAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
+                mPresenter.clickItem(getActivity(), mRecyclerAdapter, position);
             }
         });
 
@@ -83,6 +83,7 @@ public class HotFragment extends BaseFragment implements HotContract.View {
             RecyclerItem recyclerItem = new RecyclerItem();
             recyclerItem.setImgLink(hot.getThumbnail());
             recyclerItem.setTitle(hot.getTitle());
+            recyclerItem.setId(hot.getNewsId());
             mRecyclerAdapter.addRecyclerItem(recyclerItem);
         }
         mRecyclerAdapter.notifyDataSetChanged();

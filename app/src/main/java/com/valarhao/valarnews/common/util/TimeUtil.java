@@ -6,7 +6,6 @@ import java.util.Date;
 /**
  * 时间戳转换工具
  */
-
 public class TimeUtil {
 
     public static String format(long time) {
@@ -20,7 +19,7 @@ public class TimeUtil {
             str = interval/3600 + "小时前";
         } else { //24小时前
             Date date = new Date( time * 1000 );
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             str = sdf.format(date);
         }
         return str;
