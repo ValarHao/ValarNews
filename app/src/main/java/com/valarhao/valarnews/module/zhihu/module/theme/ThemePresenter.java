@@ -5,7 +5,7 @@ import android.content.Intent;
 
 import com.valarhao.valarnews.common.util.LogUtil;
 import com.valarhao.valarnews.module.main.RetrofitHelper;
-import com.valarhao.valarnews.module.zhihu.RecyclerItem;
+import com.valarhao.valarnews.module.zhihu.common.RecyclerItem;
 import com.valarhao.valarnews.module.zhihu.common.RecyclerTabAdapter;
 import com.valarhao.valarnews.module.zhihu.module.theme.child.ThemeChildActivity;
 

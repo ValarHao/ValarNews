@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import com.valarhao.valarnews.R;
 import com.valarhao.valarnews.common.base.BaseFragment;
 import com.valarhao.valarnews.common.util.Utils;
-import com.valarhao.valarnews.module.zhihu.RecyclerItem;
+import com.valarhao.valarnews.module.zhihu.common.RecyclerItem;
 import com.valarhao.valarnews.module.zhihu.common.RecyclerTabAdapter;
 
 import java.util.List;
@@ -56,7 +56,7 @@ public class SectionFragment extends BaseFragment implements SectionContract.Vie
         mRecyclerAdapter.setOnItemClickListener(new RecyclerTabAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-
+                mPresenter.clickItem(getActivity(), mRecyclerAdapter, position);
             }
         });
 
@@ -81,6 +81,7 @@ public class SectionFragment extends BaseFragment implements SectionContract.Vie
             RecyclerItem recyclerItem = new RecyclerItem();
             recyclerItem.setImgLink(section.getThumbnail());
             recyclerItem.setTitle(section.getName());
+            recyclerItem.setId(section.getId());
             mRecyclerAdapter.addRecyclerItem(recyclerItem);
         }
         mRecyclerAdapter.notifyDataSetChanged();

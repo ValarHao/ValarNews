@@ -5,8 +5,8 @@ import android.content.Intent;
 
 import com.valarhao.valarnews.common.util.LogUtil;
 import com.valarhao.valarnews.module.main.RetrofitHelper;
-import com.valarhao.valarnews.module.zhihu.RecyclerItem;
-import com.valarhao.valarnews.module.zhihu.RecyclerListAdapter;
+import com.valarhao.valarnews.module.zhihu.common.RecyclerItem;
+import com.valarhao.valarnews.module.zhihu.common.RecyclerListAdapter;
 import com.valarhao.valarnews.module.zhihu.common.detail.DetailActivity;
 
 import java.text.SimpleDateFormat;

@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.valarhao.valarnews.R;
 import com.valarhao.valarnews.common.util.GlideUtil;
-import com.valarhao.valarnews.module.zhihu.RecyclerItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,8 +55,6 @@ public class RecyclerTabAdapter extends RecyclerView.Adapter<RecyclerTabAdapter.
         //加载图片
         if (recyclerItem.getImgLink() != null) {
             GlideUtil.load(mContext, recyclerItem.getImgLink(), holder.itemImg);
-        } else {
-            holder.itemImg.setVisibility(View.GONE);
         }
         //点击item监听
         if (mOnItemClickListener != null) {

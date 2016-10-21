@@ -1,9 +1,14 @@
 package com.valarhao.valarnews.module.zhihu.module.section;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 
 import com.valarhao.valarnews.common.util.LogUtil;
 import com.valarhao.valarnews.module.main.RetrofitHelper;
+import com.valarhao.valarnews.module.zhihu.common.RecyclerItem;
+import com.valarhao.valarnews.module.zhihu.common.RecyclerTabAdapter;
+import com.valarhao.valarnews.module.zhihu.module.section.child.SectionChildActivity;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -34,8 +39,10 @@ public class SectionPresenter implements SectionContract.Presenter {
     }
 
     @Override
-    public void clickItem(FragmentActivity activity) {
-
+    public void clickItem(Context context, RecyclerTabAdapter adapter, int position) {
+        RecyclerItem recyclerItem = adapter.getRecyclerItem(position);
+        Intent intent = SectionChildActivity.newIndexIntent(context, recyclerItem.getId());
+        context.startActivity(intent);
     }
 
     /**

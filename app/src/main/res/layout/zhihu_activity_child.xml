@@ -5,13 +5,13 @@
               android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbarZhihuThemeChild"
+        android:id="@+id/toolbarZhihuChild"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"/>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcvZhihuThemeChild"
+        android:id="@+id/rcvZhihuChild"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"/>

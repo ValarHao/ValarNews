@@ -1,4 +1,4 @@
-package com.valarhao.valarnews.module.zhihu;
+package com.valarhao.valarnews.module.zhihu.common;
 
 public class RecyclerItem {
 

@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.valarhao.valarnews.common.base.BasePresenter;
 import com.valarhao.valarnews.common.base.BaseView;
-import com.valarhao.valarnews.module.zhihu.RecyclerListAdapter;
+import com.valarhao.valarnews.module.zhihu.common.RecyclerListAdapter;
 
 import java.util.List;
 

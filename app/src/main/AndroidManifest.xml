@@ -33,7 +33,10 @@
         <activity android:name=".module.zhihu.common.detail.comment.ShortCommentActivity"
                   android:screenOrientation="portrait"
                   android:launchMode="singleTop"/>
-        <activity android:name=".module.zhihu.module.section.theme.child.ThemeChildActivity"
+        <activity android:name=".module.zhihu.module.theme.child.ThemeChildActivity"
+                  android:screenOrientation="portrait"
+                  android:launchMode="singleTop"/>
+        <activity android:name=".module.zhihu.module.section.child.SectionChildActivity"
                   android:screenOrientation="portrait"
                   android:launchMode="singleTop"/>
     </application>

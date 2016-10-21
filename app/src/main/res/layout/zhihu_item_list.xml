@@ -19,7 +19,8 @@
         <ImageView
             android:id="@+id/imgItemList"
             android:layout_width="@dimen/list_image_size"
-            android:layout_height="@dimen/list_image_size"/>
+            android:layout_height="@dimen/list_image_size"
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/txtItemList"

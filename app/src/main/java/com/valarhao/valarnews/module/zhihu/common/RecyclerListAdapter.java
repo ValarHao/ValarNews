@@ -1,4 +1,4 @@
-package com.valarhao.valarnews.module.zhihu;
+package com.valarhao.valarnews.module.zhihu.common;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -56,8 +56,6 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
         //加载图片
         if (recyclerItem.getImgLink() != null) {
             GlideUtil.load(mContext, recyclerItem.getImgLink(), holder.itemImg);
-        } else {
-            holder.itemImg.setVisibility(View.GONE);
         }
         //点击item监听
         if (mOnItemClickListener != null) {
