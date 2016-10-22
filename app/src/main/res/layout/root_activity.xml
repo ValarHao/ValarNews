@@ -14,4 +14,11 @@
         android:textSize="18sp"
         android:text="@string/root_author"/>
 
+    <RelativeLayout
+        android:id="@+id/cacheViewGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </RelativeLayout>
+
 </RelativeLayout>
