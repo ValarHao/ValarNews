@@ -10,7 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.valarhao.valarnews.R;
+import com.valarhao.valarnews.common.app.App;
 import com.valarhao.valarnews.common.util.GlideUtil;
+import com.valarhao.valarnews.common.util.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +56,11 @@ public class RecyclerTabAdapter extends RecyclerView.Adapter<RecyclerTabAdapter.
         holder.itemTxtTitle.setText(recyclerItem.getTitle());
         //加载图片
         if (recyclerItem.getImgLink() != null) {
+            //由于ImageView和Bitmap实际大小不符，进行优化
+            ViewGroup.LayoutParams lp = holder.itemImg.getLayoutParams();
+            lp.width = (App.SCREEN_WIDTH - Utils.dp2px(mContext, 12)) / 2;
+            lp.height = Utils.dp2px(mContext, 120);
+
             GlideUtil.load(mContext, recyclerItem.getImgLink(), holder.itemImg);
         }
         //点击item监听
