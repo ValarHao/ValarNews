@@ -6,7 +6,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.TypedValue;
@@ -14,20 +13,18 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.valarhao.valarnews.common.app.App;
+
 public class Utils {
 
     /**
      * 获取versionCode
-     * @param context
      * @return
      */
-    public static int getVersionCode(Context context) {
+    public static int getVersionCode() {
         int code = 0;
-        if (context == null) {
-            return code;
-        }
         try {
-            PackageInfo info = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+            PackageInfo info = App.getInstance().getPackageManager().getPackageInfo(App.getInstance().getPackageName(), 0);
             code = info.versionCode;
         } catch (PackageManager.NameNotFoundException e) {}
         return code;
@@ -35,14 +32,13 @@ public class Utils {
 
     /**
      * 获取versionName
-     * @param context
      * @return
      */
-    public static String getVersionName(Context context)
+    public static String getVersionName()
     {
         try {
-            PackageManager packageManager = context.getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
+            PackageManager packageManager = App.getInstance().getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(App.getInstance().getPackageName(), 0);
             return packageInfo.versionName;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
@@ -96,48 +92,39 @@ public class Utils {
 
     /**
      * 当前网络是否可用
-     * @param context
      * @return
      */
-    public static boolean isNetworkConnected(Context context) {
-        if (context != null) {
-            ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-            if (networkInfo != null) {
-                return networkInfo.isAvailable() && networkInfo.isConnectedOrConnecting();
-            }
+    public static boolean isNetworkConnected() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) App.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo != null) {
+            return networkInfo.isAvailable() && networkInfo.isConnectedOrConnecting();
         }
         return false;
     }
 
     /**
      * 当前是否为WIFI网络
-     * @param context
      * @return
      */
-    public static boolean isNetworkWifi(Context context) {
-        if (context != null) {
-            ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-            if (networkInfo != null) {
-                return networkInfo.getType() == ConnectivityManager.TYPE_WIFI;
-            }
+    public static boolean isNetworkWifi() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) App.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo != null) {
+            return networkInfo.getType() == ConnectivityManager.TYPE_WIFI;
         }
         return false;
     }
 
     /**
      * 当前是否为移动网络
-     * @param context
      * @return
      */
-    public static boolean isNetworkMobile(Context context) {
-        if (context != null) {
-            ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-            if (networkInfo != null) {
-                return networkInfo.getType() == ConnectivityManager.TYPE_MOBILE;
-            }
+    public static boolean isNetworkMobile() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) App.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo != null) {
+            return networkInfo.getType() == ConnectivityManager.TYPE_MOBILE;
         }
         return false;
     }
