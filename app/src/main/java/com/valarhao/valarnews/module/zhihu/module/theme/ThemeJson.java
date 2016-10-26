@@ -1,5 +1,7 @@
 package com.valarhao.valarnews.module.zhihu.module.theme;
 
+import com.valarhao.valarnews.module.zhihu.common.RecyclerItem;
+
 import java.util.List;
 
 public class ThemeJson {
@@ -34,7 +36,7 @@ public class ThemeJson {
      * "name":"日常心理学"}
      */
 
-    public static class Theme {
+    public static class Theme extends RecyclerItem {
 
         private int color;
         private String thumbnail;
@@ -50,15 +52,22 @@ public class ThemeJson {
             return thumbnail;
         }
 
+        @Override
+        public String getImgLink() {
+            return thumbnail;
+        }
+
         public String getDescription() {
             return description;
         }
 
+        @Override
         public int getId() {
             return id;
         }
 
-        public String getName() {
+        @Override
+        public String getTitle() {
             return name;
         }
     }

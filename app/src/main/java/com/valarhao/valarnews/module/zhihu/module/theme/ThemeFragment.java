@@ -78,11 +78,7 @@ public class ThemeFragment extends BaseFragment implements ThemeContract.View {
         mSwipeRefresh.setRefreshing(false);
         mRecyclerAdapter.clear();
         for (ThemeJson.Theme theme : themes) {
-            RecyclerItem recyclerItem = new RecyclerItem();
-            recyclerItem.setImgLink(theme.getThumbnail());
-            recyclerItem.setTitle(theme.getName());
-            recyclerItem.setId(theme.getId());
-            mRecyclerAdapter.addRecyclerItem(recyclerItem);
+            mRecyclerAdapter.addRecyclerItem(theme);
         }
         mRecyclerAdapter.notifyDataSetChanged();
     }

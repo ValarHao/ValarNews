@@ -81,11 +81,7 @@ public class HotFragment extends BaseFragment implements HotContract.View {
         mSwipeRefresh.setRefreshing(false);
         mRecyclerAdapter.clear();
         for (HotJson.Hot hot : hots) {
-            RecyclerItem recyclerItem = new RecyclerItem();
-            recyclerItem.setImgLink(hot.getThumbnail());
-            recyclerItem.setTitle(hot.getTitle());
-            recyclerItem.setId(hot.getNewsId());
-            mRecyclerAdapter.addRecyclerItem(recyclerItem);
+            mRecyclerAdapter.addRecyclerItem(hot);
         }
         mRecyclerAdapter.notifyDataSetChanged();
     }

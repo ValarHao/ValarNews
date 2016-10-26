@@ -88,11 +88,7 @@ public class DailyFragment extends BaseFragment implements DailyContract.View {
         mSwipeRefresh.setRefreshing(false);
         mRecyclerAdapter.clear();
         for (DailyJson.Daily daily : dailies) {
-            RecyclerItem recyclerItem = new RecyclerItem();
-            recyclerItem.setImgLink(daily.getImages().get(0));
-            recyclerItem.setTitle(daily.getTitle());
-            recyclerItem.setId(daily.getId());
-            mRecyclerAdapter.addRecyclerItem(recyclerItem);
+            mRecyclerAdapter.addRecyclerItem(daily);
         }
         mRecyclerAdapter.notifyDataSetChanged();
     }
@@ -101,11 +97,7 @@ public class DailyFragment extends BaseFragment implements DailyContract.View {
     public void showAddRecyclerView(List<DailyJson.Daily> dailies) {
         mSwipeRefresh.setRefreshing(false);
         for (DailyJson.Daily daily : dailies) {
-            RecyclerItem recyclerItem = new RecyclerItem();
-            recyclerItem.setImgLink(daily.getImages().get(0));
-            recyclerItem.setTitle(daily.getTitle());
-            recyclerItem.setId(daily.getId());
-            mRecyclerAdapter.addRecyclerItem(recyclerItem);
+            mRecyclerAdapter.addRecyclerItem(daily);
         }
         mRecyclerAdapter.notifyDataSetChanged();
     }

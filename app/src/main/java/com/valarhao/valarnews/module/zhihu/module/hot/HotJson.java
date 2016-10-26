@@ -1,5 +1,7 @@
 package com.valarhao.valarnews.module.zhihu.module.hot;
 
+import com.valarhao.valarnews.module.zhihu.common.RecyclerItem;
+
 import java.util.List;
 
 public class HotJson {
@@ -21,16 +23,15 @@ public class HotJson {
      * "title":"瞎扯 · 如何正确地吐槽"
      */
 
-    public static class Hot {
+    public static class Hot extends RecyclerItem {
 
         private int news_id;
         private String url;
         private String thumbnail;
         private String title;
 
-        private boolean readState;
-
-        public int getNewsId() {
+        @Override
+        public int getId() {
             return news_id;
         }
 
@@ -38,20 +39,14 @@ public class HotJson {
             return url;
         }
 
-        public String getThumbnail() {
+        @Override
+        public String getImgLink() {
             return thumbnail;
         }
 
+        @Override
         public String getTitle() {
             return title;
-        }
-
-        public void setReadState(boolean readState) {
-            this.readState = readState;
-        }
-
-        public boolean getReadState() {
-            return readState;
         }
     }
 }

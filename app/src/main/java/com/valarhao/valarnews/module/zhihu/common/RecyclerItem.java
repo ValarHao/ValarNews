@@ -1,32 +1,18 @@
 package com.valarhao.valarnews.module.zhihu.common;
 
-public class RecyclerItem {
+public abstract class RecyclerItem {
 
-    private String mImgLink;
-    private String mTitle;
-    private int mId;
+    private boolean mReadState;
 
-    public void setImgLink(String imgLink) {
-        mImgLink = imgLink;
+    public abstract String getImgLink();
+    public abstract String getTitle();
+    public abstract int getId();
+
+    public void setReadState(boolean readState) {
+        mReadState = readState;
     }
 
-    public String getImgLink() {
-        return mImgLink;
-    }
-
-    public void setTitle(String title) {
-        mTitle = title;
-    }
-
-    public String getTitle() {
-        return mTitle;
-    }
-
-    public void setId(int id) {
-        mId = id;
-    }
-
-    public int getId() {
-        return mId;
+    public boolean getReadState() {
+        return mReadState;
     }
 }

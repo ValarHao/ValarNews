@@ -1,5 +1,7 @@
 package com.valarhao.valarnews.module.zhihu.module.section;
 
+import com.valarhao.valarnews.module.zhihu.common.RecyclerItem;
+
 import java.util.List;
 
 public class SectionJson {
@@ -21,7 +23,7 @@ public class SectionJson {
      * "thumbnail":"http:\/\/pic3.zhimg.com\/91125c9aebcab1c84f58ce4f8779551e.jpg"
      */
 
-    public static class Section {
+    public static class Section extends RecyclerItem {
 
         private String description;
         private int id;
@@ -32,15 +34,18 @@ public class SectionJson {
             return description;
         }
 
+        @Override
         public int getId() {
             return id;
         }
 
-        public String getName() {
+        @Override
+        public String getTitle() {
             return name;
         }
 
-        public String getThumbnail() {
+        @Override
+        public String getImgLink() {
             return thumbnail;
         }
     }

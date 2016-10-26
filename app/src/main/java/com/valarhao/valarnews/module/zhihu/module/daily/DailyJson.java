@@ -1,5 +1,7 @@
 package com.valarhao.valarnews.module.zhihu.module.daily;
 
+import com.valarhao.valarnews.module.zhihu.common.RecyclerItem;
+
 import java.util.List;
 
 public class DailyJson {
@@ -20,7 +22,7 @@ public class DailyJson {
         return stories;
     }
 
-    public static class Daily {
+    public static class Daily extends RecyclerItem {
 
         /**
          * "images":["http:\/\/pic2.zhimg.com\/50f7d64cba9305ea756940615fca6935.jpg"]
@@ -36,16 +38,16 @@ public class DailyJson {
         private int ga_prefix;
         private String title;
 
-        private boolean readState;
-
-        public List<String> getImages() {
-            return images;
+        @Override
+        public String getImgLink() {
+            return images.get(0);
         }
 
         public int getType() {
             return type;
         }
 
+        @Override
         public int getId() {
             return id;
         }
@@ -54,16 +56,9 @@ public class DailyJson {
             return ga_prefix;
         }
 
+        @Override
         public String getTitle() {
             return title;
-        }
-
-        public void setReadState(boolean readState) {
-            this.readState = readState;
-        }
-
-        public boolean getReadState() {
-            return readState;
         }
     }
 }

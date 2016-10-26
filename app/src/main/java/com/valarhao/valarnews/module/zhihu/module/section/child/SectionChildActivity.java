@@ -109,11 +109,7 @@ public class SectionChildActivity extends AppCompatActivity {
 
                     @Override
                     public void onNext(SectionChildJson.Story story) {
-                        RecyclerItem recyclerItem = new RecyclerItem();
-                        recyclerItem.setImgLink(story.getImages().get(0));
-                        recyclerItem.setTitle(story.getTitle());
-                        recyclerItem.setId(story.getId());
-                        mRecyclerAdapter.addRecyclerItem(recyclerItem);
+                        mRecyclerAdapter.addRecyclerItem(story);
                     }
                 });
     }

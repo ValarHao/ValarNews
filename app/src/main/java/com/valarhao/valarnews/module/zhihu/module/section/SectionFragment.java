@@ -78,11 +78,7 @@ public class SectionFragment extends BaseFragment implements SectionContract.Vie
         mSwipeRefresh.setRefreshing(false);
         mRecyclerAdapter.clear();
         for (SectionJson.Section section : sections) {
-            RecyclerItem recyclerItem = new RecyclerItem();
-            recyclerItem.setImgLink(section.getThumbnail());
-            recyclerItem.setTitle(section.getName());
-            recyclerItem.setId(section.getId());
-            mRecyclerAdapter.addRecyclerItem(recyclerItem);
+            mRecyclerAdapter.addRecyclerItem(section);
         }
         mRecyclerAdapter.notifyDataSetChanged();
     }

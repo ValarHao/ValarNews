@@ -1,5 +1,7 @@
 package com.valarhao.valarnews.module.zhihu.module.section.child;
 
+import com.valarhao.valarnews.module.zhihu.common.RecyclerItem;
+
 import java.util.List;
 
 public class SectionChildJson {
@@ -34,7 +36,7 @@ public class SectionChildJson {
      * "title":"深夜惊奇 · 要穿内衣"
      */
 
-    public static class Story {
+    public static class Story extends RecyclerItem {
 
         private List<String> images;
         private String date;
@@ -42,10 +44,9 @@ public class SectionChildJson {
         private int id;
         private String title;
 
-        private boolean readState;
-
-        public List<String> getImages() {
-            return images;
+        @Override
+        public String getImgLink() {
+            return images.get(0);
         }
 
         public String getDate() {
@@ -56,20 +57,14 @@ public class SectionChildJson {
             return display_date;
         }
 
+        @Override
         public int getId() {
             return id;
         }
 
+        @Override
         public String getTitle() {
             return title;
-        }
-
-        public void setReadState(boolean readState) {
-            this.readState = readState;
-        }
-
-        public boolean getReadState() {
-            return readState;
         }
     }
 }

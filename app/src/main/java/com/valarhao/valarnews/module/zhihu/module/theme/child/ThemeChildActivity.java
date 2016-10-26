@@ -94,15 +94,12 @@ public class ThemeChildActivity extends AppCompatActivity {
                     public void call(ThemeChildJson themeChildJson) {
                         List<ThemeChildJson.Story> stories = themeChildJson.getStories();
                         for (ThemeChildJson.Story story : stories) {
-                            RecyclerItem recyclerItem = new RecyclerItem();
                             if (story.getImages() == null) {
-                                recyclerItem.setImgLink(themeChildJson.getImage());
+                                story.setImgLink(themeChildJson.getImage());
                             } else {
-                                recyclerItem.setImgLink(story.getImages().get(0));
+                                story.setImgLink(story.getImages().get(0));
                             }
-                            recyclerItem.setTitle(story.getTitle());
-                            recyclerItem.setId(story.getId());
-                            mRecyclerAdapter.addRecyclerItem(recyclerItem);
+                            mRecyclerAdapter.addRecyclerItem(story);
                         }
                         mRecyclerAdapter.notifyDataSetChanged();
                     }

@@ -1,5 +1,7 @@
 package com.valarhao.valarnews.module.zhihu.module.theme.child;
 
+import com.valarhao.valarnews.module.zhihu.common.RecyclerItem;
+
 import java.util.List;
 
 public class ThemeChildJson {
@@ -63,37 +65,40 @@ public class ThemeChildJson {
      * "title":"不许无聊在读读日报里等你哟"
      */
 
-    public static class Story {
+    public static class Story extends RecyclerItem {
 
         private List<String> images;
         private int type;
         private int id;
         private String title;
 
-        private boolean readState;
+        private String mImgLink;
 
         public List<String> getImages() {
             return images;
+        }
+
+        public void setImgLink(String imgLink) {
+            mImgLink = imgLink;
+        }
+
+        @Override
+        public String getImgLink() {
+            return mImgLink;
         }
 
         public int getType() {
             return type;
         }
 
+        @Override
         public int getId() {
             return id;
         }
 
+        @Override
         public String getTitle() {
             return title;
-        }
-
-        public void setReadState(boolean readState) {
-            this.readState = readState;
-        }
-
-        public boolean getState() {
-            return readState;
         }
     }
 
