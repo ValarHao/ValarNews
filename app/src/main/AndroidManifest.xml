@@ -36,10 +36,12 @@
                   android:theme="@style/TranslucentTheme"/>
         <activity android:name=".module.zhihu.module.theme.child.ThemeChildActivity"
                   android:screenOrientation="portrait"
-                  android:launchMode="singleTop"/>
+                  android:launchMode="singleTop"
+                  android:theme="@style/TranslucentTheme"/>
         <activity android:name=".module.zhihu.module.section.child.SectionChildActivity"
                   android:screenOrientation="portrait"
-                  android:launchMode="singleTop"/>
+                  android:launchMode="singleTop"
+                  android:theme="@style/TranslucentTheme"/>
     </application>
 
 </manifest>
