@@ -2,6 +2,7 @@ package com.valarhao.valarnews.module.zhihu.common.detail.comment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -37,6 +38,7 @@ public class ShortCommentActivity extends AppCompatActivity {
 
         // ToolBar
         mToolbar.setTitle("评论");
+        mToolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

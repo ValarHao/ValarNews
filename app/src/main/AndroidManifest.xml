@@ -32,7 +32,8 @@
                   android:theme="@style/TranslucentTheme"/>
         <activity android:name=".module.zhihu.common.detail.comment.ShortCommentActivity"
                   android:screenOrientation="portrait"
-                  android:launchMode="singleTop"/>
+                  android:launchMode="singleTop"
+                  android:theme="@style/TranslucentTheme"/>
         <activity android:name=".module.zhihu.module.theme.child.ThemeChildActivity"
                   android:screenOrientation="portrait"
                   android:launchMode="singleTop"/>
