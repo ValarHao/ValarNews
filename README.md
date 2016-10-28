@@ -3,11 +3,11 @@
 框架采用 MVP + RxJava + Retrofit + OkHttp + Glide  
 声明: 本项目仅做学习交流使用，欢迎大家star、fork，API数据内容所有权归原作者所有，请勿用于其他用途  
 ###预览图  
-[](https://github.com/ValarHao/ValarNews/screenshots/demo1.gif)  
-[](https://github.com/ValarHao/ValarNews/screenshots/demo2.gif)  
+![image](https://github.com/ValarHao/ValarNews/blob/master/screenshots/demo1.gif)  
+![image](https://github.com/ValarHao/ValarNews/blob/master/screenshots/demo2.gif)  
 ###扫描二维码下载APK  
 Android 5.0 及以上  
-[](https://github.com/ValarHao/ValarNews/screenshots/download.png)  
+![image](https://github.com/ValarHao/ValarNews/blob/master/screenshots/download.png)  
 #Version  
 ###V1.0  
 提交第一版
