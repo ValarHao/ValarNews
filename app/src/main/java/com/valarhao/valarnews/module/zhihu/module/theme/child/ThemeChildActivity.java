@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.valarhao.valarnews.R;
-import com.valarhao.valarnews.common.app.App;
 import com.valarhao.valarnews.common.util.LogUtil;
 import com.valarhao.valarnews.common.util.Utils;
 import com.valarhao.valarnews.module.main.RetrofitHelper;
@@ -110,8 +109,7 @@ public class ThemeChildActivity extends AppCompatActivity {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        String str = App.getInstance().getResources().getString(R.string.network_error_message);
-                        Utils.showSnackbar(mRecyclerView, str);
+                        Utils.showSnackbar(mRecyclerView, R.string.network_error_message);
                     }
                 });
     }

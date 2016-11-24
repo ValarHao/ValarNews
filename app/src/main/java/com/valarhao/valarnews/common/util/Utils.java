@@ -6,6 +6,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.TypedValue;
@@ -62,19 +63,25 @@ public class Utils {
     /**
      * 短时间显示Toast
      * @param context
-     * @param msg
      */
-    public static void showToast(Context context, CharSequence msg) {
+    /*public static void showToast(Context context, CharSequence msg) {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+    }*/
+
+    public static void showToast(Context context, @StringRes int resId) {
+        Toast.makeText(context, context.getResources().getText(resId), Toast.LENGTH_SHORT).show();
     }
 
     /**
      * 短时间显示Snackbar
      * @param view
-     * @param msg
      */
-    public static void showSnackbar(View view, String msg) {
+    /*public static void showSnackbar(View view, String msg) {
         Snackbar.make(view, msg, Snackbar.LENGTH_SHORT).show();
+    }*/
+
+    public static void showSnackbar(View view, @StringRes int resId) {
+        Snackbar.make(view, App.getInstance().getResources().getText(resId), Snackbar.LENGTH_SHORT).show();
     }
 
     /**

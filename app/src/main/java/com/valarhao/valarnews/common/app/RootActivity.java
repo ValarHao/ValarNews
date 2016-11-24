@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.valarhao.valarnews.R;
-import com.valarhao.valarnews.common.util.Utils;
 import com.valarhao.valarnews.module.main.MainActivity;
 
 public class RootActivity extends Activity {

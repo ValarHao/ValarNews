@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.valarhao.valarnews.R;
-import com.valarhao.valarnews.common.app.App;
 import com.valarhao.valarnews.common.util.LogUtil;
 import com.valarhao.valarnews.module.main.RetrofitHelper;
 import com.valarhao.valarnews.module.zhihu.common.RecyclerItem;
@@ -79,8 +78,7 @@ public class DailyPresenter implements DailyContract.Presenter {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        String str = App.getInstance().getResources().getString(R.string.network_error_message);
-                        mDailyView.showError(str);
+                        mDailyView.showError(R.string.network_error_message);
                     }
                 });
     }
@@ -102,8 +100,7 @@ public class DailyPresenter implements DailyContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        String str = App.getInstance().getResources().getString(R.string.network_error_message);
-                        mDailyView.showError(str);
+                        mDailyView.showError(R.string.network_error_message);
                     }
 
                     @Override

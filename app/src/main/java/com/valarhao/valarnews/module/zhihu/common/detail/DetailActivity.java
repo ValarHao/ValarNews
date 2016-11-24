@@ -3,6 +3,7 @@ package com.valarhao.valarnews.module.zhihu.common.detail;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.StringRes;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
@@ -137,8 +138,8 @@ public class DetailActivity extends AppCompatActivity implements DetailContract.
     }
 
     @Override
-    public void showError(String msg) {
-        Utils.showToast(this, msg);
+    public void showError(@StringRes int resId) {
+        Utils.showToast(this, resId);
     }
 
     public static Intent newIndexIntent(Context context, int id) {

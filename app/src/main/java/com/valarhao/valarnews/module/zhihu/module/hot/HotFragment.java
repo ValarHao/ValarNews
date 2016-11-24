@@ -3,6 +3,7 @@ package com.valarhao.valarnews.module.zhihu.module.hot;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
@@ -14,7 +15,6 @@ import android.view.ViewGroup;
 import com.valarhao.valarnews.R;
 import com.valarhao.valarnews.common.base.BaseFragment;
 import com.valarhao.valarnews.common.util.Utils;
-import com.valarhao.valarnews.module.zhihu.common.RecyclerItem;
 import com.valarhao.valarnews.module.zhihu.common.RecyclerListAdapter;
 
 import java.util.List;
@@ -87,8 +87,8 @@ public class HotFragment extends BaseFragment implements HotContract.View {
     }
 
     @Override
-    public void showError(String msg) {
+    public void showError(@StringRes int resId) {
         mSwipeRefresh.setRefreshing(false);
-        Utils.showSnackbar(mRecyclerView, msg);
+        Utils.showSnackbar(mRecyclerView, resId);
     }
 }

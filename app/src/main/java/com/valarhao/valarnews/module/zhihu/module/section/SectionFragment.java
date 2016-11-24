@@ -3,6 +3,7 @@ package com.valarhao.valarnews.module.zhihu.module.section;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +14,6 @@ import android.view.ViewGroup;
 import com.valarhao.valarnews.R;
 import com.valarhao.valarnews.common.base.BaseFragment;
 import com.valarhao.valarnews.common.util.Utils;
-import com.valarhao.valarnews.module.zhihu.common.RecyclerItem;
 import com.valarhao.valarnews.module.zhihu.common.RecyclerTabAdapter;
 
 import java.util.List;
@@ -84,8 +84,8 @@ public class SectionFragment extends BaseFragment implements SectionContract.Vie
     }
 
     @Override
-    public void showError(String msg) {
+    public void showError(@StringRes int resId) {
         mSwipeRefresh.setRefreshing(false);
-        Utils.showSnackbar(mRecyclerView, msg);
+        Utils.showSnackbar(mRecyclerView, resId);
     }
 }

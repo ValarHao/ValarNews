@@ -12,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.valarhao.valarnews.R;
-import com.valarhao.valarnews.common.app.App;
 import com.valarhao.valarnews.common.util.Utils;
 import com.valarhao.valarnews.module.main.RetrofitHelper;
 
@@ -91,8 +90,7 @@ public class ShortCommentActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(Throwable e) {
-                        String str = App.getInstance().getResources().getString(R.string.network_error_message);
-                        Utils.showToast(ShortCommentActivity.this, str);
+                        Utils.showToast(ShortCommentActivity.this, R.string.network_error_message);
                     }
 
                     @Override
