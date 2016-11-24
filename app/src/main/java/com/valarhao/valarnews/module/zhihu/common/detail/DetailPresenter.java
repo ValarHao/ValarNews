@@ -3,6 +3,8 @@ package com.valarhao.valarnews.module.zhihu.common.detail;
 import android.content.Context;
 import android.content.Intent;
 
+import com.valarhao.valarnews.R;
+import com.valarhao.valarnews.common.app.App;
 import com.valarhao.valarnews.common.util.LogUtil;
 import com.valarhao.valarnews.module.main.RetrofitHelper;
 import com.valarhao.valarnews.module.zhihu.common.detail.comment.ShortCommentActivity;
@@ -56,7 +58,8 @@ public class DetailPresenter implements DetailContract.Presenter {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        mDetailView.showError("加载数据失败，请检查网络连接！");
+                        String str = App.getInstance().getResources().getString(R.string.network_error_message);
+                        mDetailView.showError(str);
                     }
                 });
     }
@@ -78,8 +81,8 @@ public class DetailPresenter implements DetailContract.Presenter {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        throwable.printStackTrace();
-                        mDetailView.showError("加载数据失败，请检查网络连接！");
+                        String str = App.getInstance().getResources().getString(R.string.network_error_message);
+                        mDetailView.showError(str);
                     }
                 });
     }

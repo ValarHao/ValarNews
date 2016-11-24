@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.valarhao.valarnews.R;
+import com.valarhao.valarnews.common.app.App;
 import com.valarhao.valarnews.common.util.Utils;
 import com.valarhao.valarnews.module.main.RetrofitHelper;
 
@@ -37,7 +38,8 @@ public class ShortCommentActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.toolbarZhihuComment);
 
         // ToolBar
-        mToolbar.setTitle("评论");
+        String str = getResources().getString(R.string.comment_title);
+        mToolbar.setTitle(str);
         mToolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -89,7 +91,8 @@ public class ShortCommentActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(Throwable e) {
-                        Utils.showToast(ShortCommentActivity.this, "加载数据失败，请检查网络连接！");
+                        String str = App.getInstance().getResources().getString(R.string.network_error_message);
+                        Utils.showToast(ShortCommentActivity.this, str);
                     }
 
                     @Override

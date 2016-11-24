@@ -1,5 +1,28 @@
 <resources>
     <string name="app_name">ValarNews</string>
+    <string name="network_error_message">加载数据失败，请检查网络连接！</string>
+    
+    <!-- RootActivity -->
     <string name="root_author">ValarHao</string>
+    
+    <!-- MainActivity -->
+    <string name="zhihuribao">知乎日报</string>
+    <string-array name="tab_title">
+        <item>日报</item>
+        <item>主题</item>
+        <item>专栏</item>
+        <item>热门</item>
+    </string-array>
+    
+    <!-- DetailActivity -->
     <string name="zero">0</string>
+
+    <!-- ShortCommentActivity -->
+    <string name="comment_title">评论</string>
+
+    <!-- SectionChildActivity -->
+    <string name="section_detail">专栏详情</string>
+
+    <!-- ThemeChildActivity -->
+    <string name="theme_detail">主题详情</string>
 </resources>

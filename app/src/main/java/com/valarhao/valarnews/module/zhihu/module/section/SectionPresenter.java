@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 
+import com.valarhao.valarnews.R;
+import com.valarhao.valarnews.common.app.App;
 import com.valarhao.valarnews.common.util.LogUtil;
 import com.valarhao.valarnews.module.main.RetrofitHelper;
 import com.valarhao.valarnews.module.zhihu.common.RecyclerItem;
@@ -61,7 +63,8 @@ public class SectionPresenter implements SectionContract.Presenter {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        mSectionView.showError("加载数据失败，请检查网络连接！");
+                        String str = App.getInstance().getResources().getString(R.string.network_error_message);
+                        mSectionView.showError(str);
                     }
                 });
     }

@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.valarhao.valarnews.R;
+import com.valarhao.valarnews.common.app.App;
 import com.valarhao.valarnews.common.util.LogUtil;
 import com.valarhao.valarnews.common.util.Utils;
 import com.valarhao.valarnews.module.main.RetrofitHelper;
@@ -45,7 +46,8 @@ public class ThemeChildActivity extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.rcvZhihuChild);
 
         // ToolBar
-        mToolbar.setTitle("主题详情");
+        String str = getResources().getString(R.string.theme_detail);
+        mToolbar.setTitle(str);
         mToolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -108,7 +110,8 @@ public class ThemeChildActivity extends AppCompatActivity {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        Utils.showSnackbar(mRecyclerView, "加载数据失败，请检查网络连接！");
+                        String str = App.getInstance().getResources().getString(R.string.network_error_message);
+                        Utils.showSnackbar(mRecyclerView, str);
                     }
                 });
     }

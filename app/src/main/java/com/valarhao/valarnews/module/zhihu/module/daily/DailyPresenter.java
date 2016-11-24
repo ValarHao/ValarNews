@@ -3,6 +3,8 @@ package com.valarhao.valarnews.module.zhihu.module.daily;
 import android.content.Context;
 import android.content.Intent;
 
+import com.valarhao.valarnews.R;
+import com.valarhao.valarnews.common.app.App;
 import com.valarhao.valarnews.common.util.LogUtil;
 import com.valarhao.valarnews.module.main.RetrofitHelper;
 import com.valarhao.valarnews.module.zhihu.common.RecyclerItem;
@@ -77,7 +79,8 @@ public class DailyPresenter implements DailyContract.Presenter {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
-                        mDailyView.showError("加载数据失败，请检查网络连接！");
+                        String str = App.getInstance().getResources().getString(R.string.network_error_message);
+                        mDailyView.showError(str);
                     }
                 });
     }
@@ -99,7 +102,8 @@ public class DailyPresenter implements DailyContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        mDailyView.showError("加载失败，请检查网络连接！");
+                        String str = App.getInstance().getResources().getString(R.string.network_error_message);
+                        mDailyView.showError(str);
                     }
 
                     @Override

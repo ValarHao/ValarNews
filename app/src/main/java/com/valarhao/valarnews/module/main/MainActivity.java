@@ -42,10 +42,11 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     @Override
     public void showTabZhihu() {
         List<BaseFragment> fragments = new ArrayList<>();
-        fragments.add(new DailyFragment("日报"));
-        fragments.add(new ThemeFragment("主题"));
-        fragments.add(new SectionFragment("专栏"));
-        fragments.add(new HotFragment("热门"));
+        String[] items = getResources().getStringArray(R.array.tab_title);
+        fragments.add(new DailyFragment(items[0]));
+        fragments.add(new ThemeFragment(items[1]));
+        fragments.add(new SectionFragment(items[2]));
+        fragments.add(new HotFragment(items[3]));
         mTabAdapter = new TabAdapter(getSupportFragmentManager(), fragments);
         mViewPager.setAdapter(mTabAdapter);
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
